@@ -19,16 +19,11 @@ public class ConnectionFactory {
 //		ds.setServerName("DESKTOP-E021K2T\\\\SQLEXPRESS");
 //		ds.setDatabaseName("Estacao");
 //		ds.setIntegratedSecurity(true);
-		String connectionUrl = "jdbc:sqlserver://DESKTOP-FERNAND\\SQLEXPRESS;databaseName=Estacao;integratedSecurity=true;";
-		
-		try (Connection conexao = DriverManager.getConnection(connectionUrl);) {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			return conexao;
+		try {
+			String connectionUrl = "jdbc:sqlserver://DESKTOP-E021K2T\\SQLEXPRESS;databaseName=Estacao;integratedSecurity=true;";
+			return DriverManager.getConnection(connectionUrl);
 		} catch (SQLException e) {
 			LOGGER.log(Level.SEVERE,"Conexão banco de dados Sql Server");
-		}
-		catch(ClassNotFoundException c) {
-			LOGGER.log(Level.INFO,"Driver Sql Server");
 		}
 		return null;
 	}

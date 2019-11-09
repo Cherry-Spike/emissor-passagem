@@ -6,8 +6,7 @@ public class Cidade extends EntidadeBase {
 	private String nome;
 	private List<Horario> horarios = null;
 
-	public Cidade(String nome, int id) {
-		super(id);
+	public Cidade(String nome) {
 		setNome(nome);
 	}
 
@@ -23,7 +22,7 @@ public class Cidade extends EntidadeBase {
 		return horarios;
 	}
 
-	public void setHorarios(List<Horario> horarios) {
-		this.horarios = horarios;
+	public void setHorarios(Horario horario) {
+		this.horarios.add(horario);
 	}
 }
