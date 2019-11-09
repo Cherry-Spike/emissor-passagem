@@ -48,8 +48,8 @@ go
 create table Trem
 (
     Id int primary key identity(1,1),
-    QtdLugar int not null,
-    QtdLugarDisponivel int,
+    TotalAssento int not null,
+    AssentoDisponivel int,
     IdCidadeInicial  int foreign key references Cidade(Id),
     IdCidadeFinal  int foreign key references Cidade(Id),
 )
