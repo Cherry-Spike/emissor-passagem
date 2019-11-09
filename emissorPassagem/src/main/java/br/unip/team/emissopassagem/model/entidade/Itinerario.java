@@ -1,9 +1,6 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Itinerario extends EntidadeBase{
-	protected Itinerario(int id) {
-		super(id);
-	}
 	private Cidade embarque;
 	private Cidade desembarque;
 	private Horario hrEmbarque;
