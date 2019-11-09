@@ -30,8 +30,8 @@ public class Apresentacao extends JFrame {
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		CidadeDAO dao= new CidadeDAO();
-		List<Cidade>testeCidade = dao.obterTodos();
+		//CidadeDAO dao= new CidadeDAO();
+		//List<Cidade>testeCidade = dao.obterTodos();
 		
 
 		//new ConexaoDb();
