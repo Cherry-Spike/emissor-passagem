@@ -20,7 +20,7 @@ public class TelaEstacoes extends Tela {
 	public JPanel window() {
 		
 		JPanel contentPane = new JPanel();
-		contentPane.setBackground(new Color(36, 63, 111));
+		contentPane.setBackground(corDeFundo);
 		
 		JComboBox<Object> cbCidade = new JComboBox<Object>();
 		cbCidade.setBounds(200, 200, 100, 40);

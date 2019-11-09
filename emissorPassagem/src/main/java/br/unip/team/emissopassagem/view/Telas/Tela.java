@@ -1,5 +1,7 @@
 package br.unip.team.emissopassagem.view.Telas;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -7,6 +9,7 @@ public abstract class Tela {
 
 	protected JPanel basePane;
 	protected JPanel backPane;
+	protected Color corDeFundo = new Color(36, 63, 111);
 	
 	public Tela() {}
 	

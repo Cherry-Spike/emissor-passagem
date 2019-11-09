@@ -21,7 +21,7 @@ public class TelaIniciar extends Tela{
 	public JPanel window() {
 		
 		JPanel contentPane = new JPanel();
-		contentPane.setBackground(new Color(36, 63, 111));
+		contentPane.setBackground(corDeFundo);
 		
 		JButton btnIniciar = new JButton("INICIAR");
 		btnIniciar.setBounds(230, 335, 180, 60);
