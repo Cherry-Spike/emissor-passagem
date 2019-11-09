@@ -19,7 +19,7 @@ public class ConnectionFactory {
 //		ds.setServerName("DESKTOP-E021K2T\\\\SQLEXPRESS");
 //		ds.setDatabaseName("Estacao");
 //		ds.setIntegratedSecurity(true);
-		String connectionUrl = "jdbc:sqlserver://DESKTOP-E021K2T\\SQLEXPRESS;databaseName=Estacao;integratedSecurity=true;";
+		String connectionUrl = "jdbc:sqlserver://DESKTOP-FERNAND\\SQLEXPRESS;databaseName=Estacao;integratedSecurity=true;";
 		
 		try (Connection conexao = DriverManager.getConnection(connectionUrl);) {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

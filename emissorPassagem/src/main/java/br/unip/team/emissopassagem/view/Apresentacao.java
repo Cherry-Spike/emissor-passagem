@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.unip.team.emissopassagem.model.persistencia.ConexaoDb;
 import br.unip.team.emissopassagem.view.Telas.TelaIniciar;
 
 public class Apresentacao extends JFrame {
