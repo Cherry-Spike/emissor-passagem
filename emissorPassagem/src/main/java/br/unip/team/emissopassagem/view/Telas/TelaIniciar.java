@@ -4,12 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class TelaIniciar extends Tela{
 	
@@ -33,17 +31,8 @@ public class TelaIniciar extends Tela{
 		btnIniciar.setFocusPainted(false);
 		contentPane.add(btnIniciar);
 		
-		JLabel lbSaudacao = new JLabel("Bem Vindo");
-		lbSaudacao.setBounds(165, 70, 350, 60);
-		lbSaudacao.setForeground(Color.white);
-		lbSaudacao.setFont(new Font(lbSaudacao.getFont().getName(), Font.BOLD, 60));
-		contentPane.add(lbSaudacao);
-		
-		JLabel lbDesc = new JLabel("Precione o botão Iniciar para comprar sua passagem");
-		lbDesc.setBounds(75, 165, 500, 30);
-		lbDesc.setForeground(Color.white);
-		lbDesc.setFont(new Font(lbDesc.getFont().getName(), lbDesc.getFont().getStyle(), 20));
-		contentPane.add(lbDesc);
+		setLabel(contentPane, "Bem Vindo", 165, 70, 350, 60, 60);
+		setLabel(contentPane, "Precione o botão Iniciar para comprar sua passagem", 75, 165, 500, 30, 20);
 		
 		ImageIcon img;
 		img = new ImageIcon(getClass().getResource("Img\\Train.png"));		

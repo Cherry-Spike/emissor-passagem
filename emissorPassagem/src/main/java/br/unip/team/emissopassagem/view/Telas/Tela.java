@@ -1,17 +1,16 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-
 import java.awt.Color;
 import java.awt.Font;
-import java.util.List;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public abstract class Tela {
 
@@ -63,26 +62,69 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 		
 	}
 	
-	public void setComboBoxEstacao(JPanel contentPane){
+	public JLabel setLabel(JPanel contentPane, String str, int x, int y, int l, int a, int size) {
 		
-		JComboBox<Object> cbEstacao = new JComboBox<Object>();
-		cbEstacao.setBounds(170, 150, 300, 60);
-		cbEstacao.setBackground(new Color(196, 217, 237));
-		cbEstacao.setForeground(new Color(0, 102, 153));
-		cbEstacao.setFont(new Font(cbEstacao.getFont().getName(), cbEstacao.getFont().getStyle(), 18));
-		cbEstacao.setFocusable(false);
-		cbEstacao.setBorder(null);
-		EstacaoDAO estacaoDAO = new EstacaoDAO();
-		for(Estacao estacao: estacaoDAO.obterTodos()) {
-			cbEstacao.addItem(estacao);
-		}
-		contentPane.add(cbEstacao);
+		JLabel lb = new JLabel(str);
+		lb.setBounds(x, y, l, a);
+		lb.setForeground(Color.white);
+		lb.setFont(new Font(lb.getFont().getName(), lb.getFont().getStyle(), size));
+		contentPane.add(lb);
+		
+		return lb;
 		
 	}
 	
+	public JComboBox<Object> setComboBox(JPanel contentPane, int x, int y, int l, int a){
+		
+		JComboBox<Object> cb = new JComboBox<Object>();
+		cb.setBounds(x, y, l, a);
+		cb.setBackground(new Color(196, 217, 237));
+		cb.setForeground(new Color(0, 102, 153));
+		cb.setFont(new Font(cb.getFont().getName(), cb.getFont().getStyle(), 18));
+		cb.setFocusable(false);
+		cb.setBorder(null);
+		/*EstacaoDAO estacaoDAO = new EstacaoDAO();
+		for(Estacao estacao: estacaoDAO.obterTodos()) {
+			cbEstacao.addItem(estacao);
+		}*/
+		contentPane.add(cb);
+		
+		return cb;
+	}
+	
+	public JTextField setTextField(JPanel contentPane, int x, int y, int l, int a, int limit) {
+		
+		JTextField txt = new JTextField(10);
+		txt.setBounds(x, y, l, a);
+		txt.setBackground(new Color(196, 217, 237));
+		txt.setForeground(new Color(0, 102, 153));
+		txt.setFont(new Font(txt.getFont().getName(), txt.getFont().getStyle(), 25));
+		txt.setBorder(null);
+		
+		txt.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(txt.getText().length() >= limit) {
+					e.consume();
+				}
+				
+			}
+			public void keyPressed(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {}
+			
+		});;
+		
+		contentPane.add(txt);
+		
+		return txt;
+	}
+	
+	/* Set & Get */
+	
 	public void setBasePane(JPanel basePane){
 		this.basePane = basePane;
-	};
+	}
 	
 	public void setBackPane(JPanel backPane) {
 		this.backPane = backPane;
