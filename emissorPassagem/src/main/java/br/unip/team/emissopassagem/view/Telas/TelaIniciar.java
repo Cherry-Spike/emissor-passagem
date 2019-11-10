@@ -57,7 +57,7 @@ public class TelaIniciar extends Tela{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
-				TelaEstacoes telaEstacoes = new TelaEstacoes(basePane, contentPane);
+				TelaEstacaoEb telaEstacoes = new TelaEstacaoEb(basePane, contentPane);
 			}
 		});
 		
