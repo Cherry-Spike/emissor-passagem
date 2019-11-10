@@ -30,7 +30,9 @@ create table Itinerario
 (
     Id int primary key identity(1,1),
     IdEstacaoEmbarque  int foreign key references Estacao(Id),
+    IdHorarioEmbarque int foreign key references Horario(Id),
     IdEstacaoDesembarque  int foreign key references Estacao(Id),
+    IdHorarioDesembarque int foreign key references Horario(Id),
     QtdPassagem int not null
 )
 go
