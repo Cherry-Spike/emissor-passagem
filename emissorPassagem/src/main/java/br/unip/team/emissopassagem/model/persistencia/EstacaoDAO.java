@@ -42,9 +42,9 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 
 	public Estacao obterEstacaoHorarios(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "select cd.id as idEstacao, cd.nome as nomeEstacao, hr.Hora,  hr.id as idHorario from EstacaoHorario as ch "
-				+ "inner join Horario as hr on ch.IdHorario = hr.Id "
-				+ "inner join Estacao as cd on ch.IdEstacao = cd.Id where ch.IdEstacao = ?";
+		String query = "select cd.id as idEstacao, cd.nome as nomeEstacao, hr.Hora,  hr.id as idHorario from EstacaoHorario as eh "
+				+ "inner join Horario as hr on eh.IdHorario = hr.Id "
+				+ "inner join Estacao as cd on eh.IdEstacao = cd.Id where eh.IdEstacao = ?";
 		Estacao estacao = new Estacao();
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {

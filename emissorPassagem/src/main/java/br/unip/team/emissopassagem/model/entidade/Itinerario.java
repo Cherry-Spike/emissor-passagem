@@ -1,35 +1,35 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Itinerario extends EntidadeBase{
-	private Estacao embarque;
-	private Estacao desembarque;
-	private Horario hrEmbarque;
-	private Horario hrDesembarque;
+	private int idEstacaoEmbarque;
+	private int idEmbarqueHorario;
+	private int idEstacaoDesembarque;
+	private int idDesembarqueHorario;
 	private int qtdPassagem;
 	
-	public Estacao getEmbarque() {
-		return embarque;
+	public int getIdEstacaoEmbarque() {
+		return idEstacaoEmbarque;
 	}
-	public void setEmbarque(Estacao embarque) {
-		this.embarque = embarque;
+	public void setIdEstacaoEmbarque(int idEstacaoEmbarque) {
+		this.idEstacaoEmbarque = idEstacaoEmbarque;
 	}
-	public Estacao getDesembarque() {
-		return desembarque;
+	public int getIdEmbarqueHorario() {
+		return idEmbarqueHorario;
 	}
-	public void setDesembarque(Estacao desembarque) {
-		this.desembarque = desembarque;
+	public void setIdEmbarqueHorario(int idEmbarqueHorario) {
+		this.idEmbarqueHorario = idEmbarqueHorario;
 	}
-	public Horario getHrEmbarque() {
-		return hrEmbarque;
+	public int getIdEstacaoDesembarque() {
+		return idEstacaoDesembarque;
 	}
-	public void setHrEmbarque(Horario hrEmbarque) {
-		this.hrEmbarque = hrEmbarque;
+	public void setIdEstacaoDesembarque(int idEstacaoDesembarque) {
+		this.idEstacaoDesembarque = idEstacaoDesembarque;
 	}
-	public Horario getHrDesembarque() {
-		return hrDesembarque;
+	public int getIdDesembarqueHorario() {
+		return idDesembarqueHorario;
 	}
-	public void setHrDesembarque(Horario hrDesembarque) {
-		this.hrDesembarque = hrDesembarque;
+	public void setIdDesembarqueHorario(int idDesembarqueHorario) {
+		this.idDesembarqueHorario = idDesembarqueHorario;
 	}
 	public int getQtdPassagem() {
 		return qtdPassagem;
@@ -37,4 +37,5 @@ public class Itinerario extends EntidadeBase{
 	public void setQtdPassagem(int qtdPassagem) {
 		this.qtdPassagem = qtdPassagem;
 	}
+
 }
