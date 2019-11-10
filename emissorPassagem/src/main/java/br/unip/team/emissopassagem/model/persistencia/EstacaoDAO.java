@@ -22,11 +22,11 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		List<Estacao> estacoes = new ArrayList<>();
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String query = "select id, nome from Estacao";
-		Estacao estacao = new Estacao();
 
 		try (Statement stmt = conexao.createStatement(); ResultSet rs = stmt.executeQuery(query);) {
 
 			while (rs.next()) {
+				Estacao estacao = new Estacao();
 				estacao.setNome(rs.getString("Nome"));
 				estacao.setId(rs.getInt("Id"));
 				estacoes.add(estacao);
