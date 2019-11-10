@@ -46,7 +46,7 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 				+ "inner join Horario as hr on ch.IdHorario = hr.Id "
 				+ "inner join Estacao as cd on ch.IdEstacao = cd.Id where ch.IdEstacao = ?";
 		Estacao estacao = new Estacao();
-		
+
 		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -58,9 +58,9 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 				Horario horario = new Horario(rs.getTime("Hora").toString());
 				horario.setId(rs.getInt("idHorario"));
 				estacao.setHorarios(horario);
+				rs.close();
+				return estacao;
 			}
-			rs.close();
-			return estacao;
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
 		} catch (Exception e) {
@@ -71,7 +71,24 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 
 	@Override
 	public Estacao obterPorId(int id) {
-		// TODO Auto-generated method stub
+		Connection conexao = ConnectionFactory.conexaoSQLServer();
+		String query = "select id, nome from Estacao where id = ?";
+		Estacao estacao = new Estacao();
+
+		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				estacao.setNome(rs.getString("nome"));
+				estacao.setId(rs.getInt("id"));
+			}
+			rs.close();
+			return estacao;
+		} catch (SQLException e) {
+			LOGGER.info("Erro na query SQL");
+		} catch (Exception e) {
+			LOGGER.severe(e.getMessage());
+		}
 		return null;
 	}
 
