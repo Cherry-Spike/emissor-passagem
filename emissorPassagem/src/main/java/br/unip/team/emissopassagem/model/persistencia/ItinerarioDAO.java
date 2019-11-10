@@ -48,8 +48,24 @@ public class ItinerarioDAO implements BaseDAO<Itinerario> {
 	}
 
 	public boolean ValidaRelacao(int idEstacao, int idHorario) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conexao = ConnectionFactory.conexaoSQLServer();
+		String query = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
+		boolean existe = false;
+
+		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+			pstmt.setInt(1, idEstacao);
+			pstmt.setInt(2, idHorario);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+				existe = true;
+			rs.close();
+			return existe;
+		} catch (SQLException e) {
+			LOGGER.info("Erro na query SQL");
+		} catch (Exception e) {
+			LOGGER.severe(e.getMessage());
+		}
+		return existe;
 	}
 
 	@Override

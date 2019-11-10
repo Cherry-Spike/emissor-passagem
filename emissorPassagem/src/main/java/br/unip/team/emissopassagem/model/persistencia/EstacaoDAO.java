@@ -20,8 +20,8 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 	@Override
 	public List<Estacao> obterTodos() {
 		List<Estacao> estacoes = new ArrayList<>();
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "select id, nome from Estacao";		
+		Connection conexao = ConnectionFactory.conexaoSQLServer();	
+		String query = "select id, nome from Estacao";
 
 		try (Statement stmt = conexao.createStatement(); ResultSet rs = stmt.executeQuery(query);) {
 
