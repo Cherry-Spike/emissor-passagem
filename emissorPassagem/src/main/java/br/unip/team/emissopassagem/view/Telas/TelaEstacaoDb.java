@@ -11,8 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import br.unip.team.emissopassagem.model.entidade.Cidade;
-import br.unip.team.emissopassagem.model.persistencia.CidadeDAO;
+import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public class TelaEstacaoDb extends Tela {
 
@@ -34,7 +34,7 @@ public class TelaEstacaoDb extends Tela {
 		lbDesc.setFont(new Font(lbDesc.getFont().getName(), lbDesc.getFont().getStyle(), 20));
 		contentPane.add(lbDesc);
 		
-		setComboBoxCidade(contentPane);		
+		setComboBoxEstacao(contentPane);		
 		
 		//Event Listener
 		

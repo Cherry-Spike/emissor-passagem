@@ -3,8 +3,8 @@ package br.unip.team.emissopassagem.model.entidade;
 public class Trem {
 	private int totalAssentos;
 	private int assentoDisponivel;
-	private Cidade pontoInicial;
-	private Cidade pontoFinal;
+	private Estacao pontoInicial;
+	private Estacao pontoFinal;
 	
 	public int gettotalAssentos() {
 		return totalAssentos;
@@ -18,16 +18,16 @@ public class Trem {
 	public void setassentoDisponivel(int assentoDisponivel) {
 		this.assentoDisponivel = assentoDisponivel;
 	}
-	public Cidade getPontoInicial() {
+	public Estacao getPontoInicial() {
 		return pontoInicial;
 	}
-	public void setPontoInicial(Cidade pontoInicial) {
+	public void setPontoInicial(Estacao pontoInicial) {
 		this.pontoInicial = pontoInicial;
 	}
-	public Cidade getPontoFinal() {
+	public Estacao getPontoFinal() {
 		return pontoFinal;
 	}
-	public void setPontoFinal(Cidade pontoFinal) {
+	public void setPontoFinal(Estacao pontoFinal) {
 		this.pontoFinal = pontoFinal;
 	}
 }

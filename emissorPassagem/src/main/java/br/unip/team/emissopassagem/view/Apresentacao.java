@@ -1,9 +1,5 @@
 package br.unip.team.emissopassagem.view;
 
-import java.util.List;
-
-import br.unip.team.emissopassagem.model.entidade.Cidade;
-import br.unip.team.emissopassagem.model.persistencia.CidadeDAO;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -30,11 +26,6 @@ public class Apresentacao extends JFrame {
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		//CidadeDAO dao= new CidadeDAO();
-		//List<Cidade>testeCidade = dao.obterTodos();
-		
-
-		//new ConexaoDb();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
