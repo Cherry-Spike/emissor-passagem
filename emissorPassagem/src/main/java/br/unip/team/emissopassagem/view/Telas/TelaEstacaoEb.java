@@ -18,6 +18,7 @@ public class TelaEstacaoEb extends Tela {
 
 	public TelaEstacaoEb(JPanel basePane, JPanel backPane) {
 		setBasePane(basePane);
+		setBackPane(backPane);
 		setNewPane(window(), basePane);
 	}
 
@@ -33,37 +34,23 @@ public class TelaEstacaoEb extends Tela {
 		lbDesc.setFont(new Font(lbDesc.getFont().getName(), lbDesc.getFont().getStyle(), 20));
 		contentPane.add(lbDesc);
 		
-		JComboBox<Object> cbCidade = new JComboBox<Object>();
-		cbCidade.setBounds(170, 150, 300, 60);
-		cbCidade.setBackground(new Color(196, 217, 237));
-		cbCidade.setForeground(new Color(0, 102, 153));
-		cbCidade.setFont(new Font(cbCidade.getFont().getName(), cbCidade.getFont().getStyle(), 18));
-		cbCidade.setFocusable(false);
-		cbCidade.setBorder(null);
-		CidadeDAO dao = new CidadeDAO();
-		for(Cidade c: dao.obterTodos()) {
-			cbCidade.addItem(c);
-		}
-		contentPane.add(cbCidade);
-		
-		JButton btnProx = new JButton("PROXIMO");
-		btnProx.setBounds(230, 335, 180, 60);
-		//btnProx.setEnabled(false);
-		btnProx.setFont(new Font("Arial", Font.BOLD, 25));
-		btnProx.setBackground(new Color(0, 153, 255));
-		btnProx.setForeground(Color.white);
-		btnProx.setOpaque(true);
-		btnProx.setBorderPainted(false);
-		btnProx.setFocusPainted(false);
-		contentPane.add(btnProx);
+		setComboBoxCidade(contentPane);		
 		
 		//Event Listener
 		
-		btnProx.addActionListener(new ActionListener() {
+		setButtonProx(contentPane).addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
-				TelaEstacaoDb telaEstacoes = new TelaEstacaoDb(basePane, contentPane);
+				TelaEstacaoDb telaEstacoes = new TelaEstacaoDb(basePane, backPane);
+			}
+		});
+		
+		setButtonCancel(contentPane).addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				contentPane.hide();
+				backPane.show();
 			}
 		});
 		
