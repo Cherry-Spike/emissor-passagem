@@ -1,22 +1,22 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Itinerario extends EntidadeBase{
-	private Cidade embarque;
-	private Cidade desembarque;
+	private Estacao embarque;
+	private Estacao desembarque;
 	private Horario hrEmbarque;
 	private Horario hrDesembarque;
 	private int qtdPassagem;
 	
-	public Cidade getEmbarque() {
+	public Estacao getEmbarque() {
 		return embarque;
 	}
-	public void setEmbarque(Cidade embarque) {
+	public void setEmbarque(Estacao embarque) {
 		this.embarque = embarque;
 	}
-	public Cidade getDesembarque() {
+	public Estacao getDesembarque() {
 		return desembarque;
 	}
-	public void setDesembarque(Cidade desembarque) {
+	public void setDesembarque(Estacao desembarque) {
 		this.desembarque = desembarque;
 	}
 	public Horario getHrEmbarque() {

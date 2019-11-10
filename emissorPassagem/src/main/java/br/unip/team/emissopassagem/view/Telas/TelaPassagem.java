@@ -11,8 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import br.unip.team.emissopassagem.model.entidade.Cidade;
-import br.unip.team.emissopassagem.model.persistencia.CidadeDAO;
+import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public class TelaPassagem extends Tela {
 
@@ -34,18 +34,18 @@ public class TelaPassagem extends Tela {
 		lbDesc.setFont(new Font(lbDesc.getFont().getName(), lbDesc.getFont().getStyle(), 20));
 		contentPane.add(lbDesc);
 		
-		JComboBox<Object> cbCidade = new JComboBox<Object>();
-		cbCidade.setBounds(170, 150, 300, 60);
-		cbCidade.setBackground(new Color(196, 217, 237));
-		cbCidade.setForeground(new Color(0, 102, 153));
-		cbCidade.setFont(new Font(cbCidade.getFont().getName(), cbCidade.getFont().getStyle(), 18));
-		cbCidade.setFocusable(false);
-		cbCidade.setBorder(null);
-		//CidadeDAO dao = new CidadeDAO();
-		//for(Cidade c: dao.obterTodos()) {
-		//	cbCidade.addItem(c);
+		JComboBox<Object> cbEstacao = new JComboBox<Object>();
+		cbEstacao.setBounds(170, 150, 300, 60);
+		cbEstacao.setBackground(new Color(196, 217, 237));
+		cbEstacao.setForeground(new Color(0, 102, 153));
+		cbEstacao.setFont(new Font(cbEstacao.getFont().getName(), cbEstacao.getFont().getStyle(), 18));
+		cbEstacao.setFocusable(false);
+		cbEstacao.setBorder(null);
+		//EstacaoDAO dao = new EstacaoDAO();
+		//for(Estacao c: dao.obterTodos()) {
+		//	cbEstacao.addItem(c);
 		//}
-		contentPane.add(cbCidade);
+		contentPane.add(cbEstacao);
 		
 		JButton btnProx = new JButton("PROXIMO");
 		btnProx.setBounds(375, 350, 200, 60);

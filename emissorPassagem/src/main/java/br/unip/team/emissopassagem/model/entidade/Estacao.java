@@ -2,11 +2,11 @@ package br.unip.team.emissopassagem.model.entidade;
 
 import java.util.List;
 
-public class Cidade extends EntidadeBase {
+public class Estacao extends EntidadeBase {
 	private String nome;
 	private List<Horario> horarios = null;
 
-	public Cidade(String nome) {
+	public Estacao(String nome) {
 		setNome(nome);
 	}
 

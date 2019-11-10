@@ -3,13 +3,15 @@ package br.unip.team.emissopassagem.view.Telas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.unip.team.emissopassagem.model.entidade.Cidade;
-import br.unip.team.emissopassagem.model.persistencia.CidadeDAO;
+import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public abstract class Tela {
 
@@ -61,20 +63,20 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 		
 	}
 	
-	public void setComboBoxCidade(JPanel contentPane){
+	public void setComboBoxEstacao(JPanel contentPane){
 		
-		JComboBox<Object> cbCidade = new JComboBox<Object>();
-		cbCidade.setBounds(170, 150, 300, 60);
-		cbCidade.setBackground(new Color(196, 217, 237));
-		cbCidade.setForeground(new Color(0, 102, 153));
-		cbCidade.setFont(new Font(cbCidade.getFont().getName(), cbCidade.getFont().getStyle(), 18));
-		cbCidade.setFocusable(false);
-		cbCidade.setBorder(null);
-		//CidadeDAO dao = new CidadeDAO();
-		//for(Cidade c: dao.obterTodos()) {
-		//	cbCidade.addItem(c);
-		//}
-		contentPane.add(cbCidade);
+		JComboBox<Object> cbEstacao = new JComboBox<Object>();
+		cbEstacao.setBounds(170, 150, 300, 60);
+		cbEstacao.setBackground(new Color(196, 217, 237));
+		cbEstacao.setForeground(new Color(0, 102, 153));
+		cbEstacao.setFont(new Font(cbEstacao.getFont().getName(), cbEstacao.getFont().getStyle(), 18));
+		cbEstacao.setFocusable(false);
+		cbEstacao.setBorder(null);
+		EstacaoDAO estacaoDAO = new EstacaoDAO();
+		for(Estacao estacao: estacaoDAO.obterTodos()) {
+			cbEstacao.addItem(estacao);
+		}
+		contentPane.add(cbEstacao);
 		
 	}
 	

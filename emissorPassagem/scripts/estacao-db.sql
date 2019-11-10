@@ -11,17 +11,17 @@ create table Horario
 )
 go
 
-create table Cidade
+create table Estacao
 (
     Id int primary key identity(1,1),
     Nome varchar(100) not null
 )
 go
 
-create table CidadeHorario
+create table EstacaoHorario
 (
     Id int primary key identity(1,1),
-    IdCidade  int foreign key references Cidade(Id),
+    IdEstacao  int foreign key references Estacao(Id),
     IdHorario int foreign key references Horario(Id)
 )
 go
@@ -29,8 +29,8 @@ go
 create table Itinerario
 (
     Id int primary key identity(1,1),
-    IdCidadeEmbarque  int foreign key references Cidade(Id),
-    IdCidadeDesembarque  int foreign key references Cidade(Id),
+    IdEstacaoEmbarque  int foreign key references Estacao(Id),
+    IdEstacaoDesembarque  int foreign key references Estacao(Id),
     QtdPassagem int not null
 )
 go
@@ -50,7 +50,7 @@ create table Trem
     Id int primary key identity(1,1),
     TotalAssento int not null,
     AssentoDisponivel int,
-    IdCidadeInicial  int foreign key references Cidade(Id),
-    IdCidadeFinal  int foreign key references Cidade(Id),
+    IdEstacaoInicial  int foreign key references Estacao(Id),
+    IdEstacaoFinal  int foreign key references Estacao(Id),
 )
 go
