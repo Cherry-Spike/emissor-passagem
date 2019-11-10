@@ -1,14 +1,11 @@
 package br.unip.team.emissopassagem.model.entidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Estacao extends EntidadeBase {
 	private String nome;
-	private List<Horario> horarios = null;
-
-	public Estacao(String nome) {
-		setNome(nome);
-	}
+	private List<Horario> horarios = new ArrayList<>();
 
 	public String getNome() {
 		return nome;

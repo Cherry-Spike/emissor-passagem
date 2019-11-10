@@ -22,11 +22,12 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		List<Estacao> estacoes = new ArrayList<>();
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String query = "select id, nome from Estacao";
+		Estacao estacao = new Estacao();
 
 		try (Statement stmt = conexao.createStatement(); ResultSet rs = stmt.executeQuery(query);) {
 
 			while (rs.next()) {
-				Estacao estacao = new Estacao(rs.getString("Nome"));
+				estacao.setNome(rs.getString("Nome"));
 				estacao.setId(rs.getInt("Id"));
 				estacoes.add(estacao);
 			}
@@ -39,20 +40,22 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		return Collections.emptyList();
 	}
 
-
 	public Estacao obterEstacaoHorarios(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String query = "select cd.id as idEstacao, cd.nome as nomeEstacao, hr.Hora,  hr.id as idHorario from EstacaoHorario as ch "
 				+ "inner join Horario as hr on ch.IdHorario = hr.Id "
 				+ "inner join Estacao as cd on ch.IdEstacao = cd.Id where ch.IdEstacao = ?";
-
+		Estacao estacao = new Estacao();
+		
 		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
-			Estacao estacao = new Estacao(rs.getString("nomeEstacao"));
-			estacao.setId(rs.getInt("idEstacao"));
 			while (rs.next()) {
-				Horario horario = new Horario(rs.getString("Horario"));
+				if (estacao.getNome() == null) {
+					estacao.setNome(rs.getString("nomeEstacao"));
+					estacao.setId(rs.getInt("idEstacao"));
+				}
+				Horario horario = new Horario(rs.getTime("Hora").toString());
 				horario.setId(rs.getInt("idHorario"));
 				estacao.setHorarios(horario);
 			}
@@ -66,13 +69,11 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		return null;
 	}
 
-
 	@Override
 	public Estacao obterPorId(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public boolean adicionar(Estacao obj) {
@@ -80,13 +81,11 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		return false;
 	}
 
-
 	@Override
 	public Estacao alterar(Estacao obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public boolean remover(int id) {
