@@ -32,9 +32,9 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 	public JButton setButtonProx(JPanel contentPane) {
 		
 		JButton btnProx = new JButton("PROXIMO");
-		btnProx.setBounds(375, 350, 200, 60);
+		btnProx.setBounds(375, 360, 200, 50);
 		//btnProx.setEnabled(false);
-		btnProx.setFont(new Font("Arial", Font.BOLD, 25));
+		btnProx.setFont(new Font("Arial", Font.BOLD, 23));
 		btnProx.setBackground(new Color(0, 153, 255));
 		btnProx.setForeground(Color.white);
 		btnProx.setOpaque(true);
@@ -49,8 +49,8 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 	public JButton setButtonCancel(JPanel contentPane) {
 		
 		JButton btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(60, 350, 200, 60);
-		btnCancelar.setFont(new Font("Arial", Font.BOLD, 25));
+		btnCancelar.setBounds(60, 360, 200, 50);
+		btnCancelar.setFont(new Font("Arial", Font.BOLD, 23));
 		btnCancelar.setBackground(new Color(85, 96, 125));
 		btnCancelar.setForeground(Color.white);
 		btnCancelar.setOpaque(true);

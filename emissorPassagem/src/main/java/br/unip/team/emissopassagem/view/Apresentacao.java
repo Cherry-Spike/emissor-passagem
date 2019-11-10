@@ -15,7 +15,7 @@ public class Apresentacao extends JFrame {
 	public Apresentacao() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 480);
+		setBounds(300, 150, 640, 480);
 		basePane = new JPanel();
 		basePane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		basePane.setLayout(null);
