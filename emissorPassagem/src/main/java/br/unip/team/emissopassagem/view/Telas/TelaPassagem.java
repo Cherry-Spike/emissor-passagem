@@ -1,11 +1,9 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TelaPassagem extends Tela {

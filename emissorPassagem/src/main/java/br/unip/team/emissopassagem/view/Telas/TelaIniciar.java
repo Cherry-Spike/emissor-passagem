@@ -34,8 +34,7 @@ public class TelaIniciar extends Tela{
 		setLabel(contentPane, "Bem Vindo", 165, 70, 350, 60, 60);
 		setLabel(contentPane, "Precione o botão Iniciar para comprar sua passagem", 75, 165, 500, 30, 20);
 		
-		ImageIcon img;
-		img = new ImageIcon(getClass().getResource("Img\\Train.png"));		
+		ImageIcon img = new ImageIcon(getClass().getResource("Img\\Train.png"));		
 		JLabel imgTrem = new JLabel(img);
 		imgTrem.setBounds(0, 0, 640, 280);
 		contentPane.add(imgTrem);

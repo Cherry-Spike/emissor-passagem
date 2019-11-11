@@ -1,13 +1,14 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class TelaEstacaoEb extends Tela {
+public class TelaEmissao extends Tela {
 
-	public TelaEstacaoEb(JPanel basePane, JPanel backPane) {
+	public TelaEmissao(JPanel basePane, JPanel backPane) {
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
@@ -19,18 +20,12 @@ public class TelaEstacaoEb extends Tela {
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
 		
-		setLabel(contentPane, "Escolha a estação de embarque", 170, 100, 500, 30, 20);		
-		setComboBox(contentPane, 170, 150, 300, 60);		
+		ImageIcon imgLogo = new ImageIcon(getClass().getResource("Img\\logo-sntf.jpg"));		
+		JLabel logoSNTF = new JLabel(imgLogo);
+		logoSNTF.setBounds(0, 80, 263, 180);
+		contentPane.add(logoSNTF);
 		
 		//Event Listener
-		
-		setButtonProx(contentPane).addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
-				TelaEstacaoDb telaEstacoes = new TelaEstacaoDb(basePane, backPane);
-			}
-		});
 		
 		setButtonCancel(contentPane).addActionListener(new ActionListener() {
 			@Override

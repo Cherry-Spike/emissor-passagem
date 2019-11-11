@@ -109,6 +109,13 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 					e.consume();
 				}
 				
+			    char c = e.getKeyChar();
+			    if (!((c >= '0') && (c <= '9') ||
+			       (c == KeyEvent.VK_BACK_SPACE) ||
+			       (c == KeyEvent.VK_DELETE))) {
+			      e.consume();
+			    }
+				
 			}
 			public void keyPressed(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {}
