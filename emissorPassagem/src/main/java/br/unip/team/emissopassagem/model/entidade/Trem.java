@@ -1,33 +1,33 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Trem {
-	private int totalAssentos;
+	private int totalAssento;
 	private int assentoDisponivel;
-	private Estacao pontoInicial;
-	private Estacao pontoFinal;
+	private int idEstacaoInicial;
+	private int idEstacaoFinal;
 	
-	public int gettotalAssentos() {
-		return totalAssentos;
+	public int getTotalAssento() {
+		return totalAssento;
 	}
-	public void settotalAssentos(int totalAssentos) {
-		this.totalAssentos = totalAssentos;
+	public void setTotalAssento(int totalAssentos) {
+		this.totalAssento = totalAssentos;
 	}
-	public int getassentoDisponivel() {
+	public int getAssentoDisponivel() {
 		return assentoDisponivel;
 	}
-	public void setassentoDisponivel(int assentoDisponivel) {
+	public void setAssentoDisponivel(int assentoDisponivel) {
 		this.assentoDisponivel = assentoDisponivel;
 	}
-	public Estacao getPontoInicial() {
-		return pontoInicial;
+	public int getIdEstacaoInicial() {
+		return idEstacaoInicial;
 	}
-	public void setPontoInicial(Estacao pontoInicial) {
-		this.pontoInicial = pontoInicial;
+	public void setIdEstacaoInicial(int idEstacaoInicial) {
+		this.idEstacaoInicial = idEstacaoInicial;
 	}
-	public Estacao getPontoFinal() {
-		return pontoFinal;
+	public int getIdEstacaoFinal() {
+		return idEstacaoFinal;
 	}
-	public void setPontoFinal(Estacao pontoFinal) {
-		this.pontoFinal = pontoFinal;
+	public void setIdEstacaoFinal(int idEstacaoFinal) {
+		this.idEstacaoFinal = idEstacaoFinal;
 	}
 }

@@ -4,7 +4,6 @@ public class Itinerario extends EntidadeBase{
 	private int idEstacaoEmbarque;
 	private int idEmbarqueHorario;
 	private int idEstacaoDesembarque;
-	private int idDesembarqueHorario;
 	private int qtdPassagem;
 	
 	public int getIdEstacaoEmbarque() {
@@ -24,12 +23,6 @@ public class Itinerario extends EntidadeBase{
 	}
 	public void setIdEstacaoDesembarque(int idEstacaoDesembarque) {
 		this.idEstacaoDesembarque = idEstacaoDesembarque;
-	}
-	public int getIdDesembarqueHorario() {
-		return idDesembarqueHorario;
-	}
-	public void setIdDesembarqueHorario(int idDesembarqueHorario) {
-		this.idDesembarqueHorario = idDesembarqueHorario;
 	}
 	public int getQtdPassagem() {
 		return qtdPassagem;

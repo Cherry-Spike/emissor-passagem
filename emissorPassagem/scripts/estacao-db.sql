@@ -32,7 +32,6 @@ create table Itinerario
     IdEstacaoEmbarque  int foreign key references Estacao(Id),
     IdHorarioEmbarque int foreign key references Horario(Id),
     IdEstacaoDesembarque  int foreign key references Estacao(Id),
-    IdHorarioDesembarque int foreign key references Horario(Id),
     QtdPassagem int not null
 )
 go
@@ -41,8 +40,6 @@ create table Passagem
 (
     Id int primary key identity(1,1),
     IdItinerario int foreign key references Itinerario(Id),
-    Qrcode varchar(200),
-    Logo varchar(200),
     Numero bigint
 )
 go

@@ -1,28 +1,14 @@
 package br.unip.team.emissopassagem.model.entidade;
 
-public class Passagem {
-	private Itinerario itinerario;
-	private String qrcode;
-	private String logo;
+public class Passagem extends EntidadeBase{
+	private int idItinerario;
 	private long numero;
 	
-	public Itinerario getItinerario() {
-		return itinerario;
+	public int getIdItinerario() {
+		return idItinerario;
 	}
-	public void setItinerario(Itinerario itinerario) {
-		this.itinerario = itinerario;
-	}
-	public String getQrcode() {
-		return qrcode;
-	}
-	public void setQrcode(String qrcode) {
-		this.qrcode = qrcode;
-	}
-	public String getLogo() {
-		return logo;
-	}
-	public void setLogo(String logo) {
-		this.logo = logo;
+	public void setIdItinerario(int idItinerario) {
+		this.idItinerario = idItinerario;
 	}
 	public long getNumero() {
 		return numero;
@@ -30,4 +16,4 @@ public class Passagem {
 	public void setNumero(long numero) {
 		this.numero = numero;
 	}
-}
+	}

@@ -12,12 +12,10 @@ import java.util.logging.Logger;
 
 import br.unip.team.emissopassagem.model.entidade.Estacao;
 import br.unip.team.emissopassagem.model.entidade.Horario;
-import br.unip.team.emissopassagem.model.interfaces.BaseDAO;
 
-public class EstacaoDAO implements BaseDAO<Estacao> {
+public class EstacaoDAO {
 	private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
 
-	@Override
 	public List<Estacao> obterTodos() {
 		List<Estacao> estacoes = new ArrayList<>();
 		Connection conexao = ConnectionFactory.conexaoSQLServer();	
@@ -69,7 +67,6 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 		return null;
 	}
 
-	@Override
 	public Estacao obterPorId(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String query = "select id, nome from Estacao where id = ?";
@@ -90,23 +87,5 @@ public class EstacaoDAO implements BaseDAO<Estacao> {
 			LOGGER.severe(e.getMessage());
 		}
 		return null;
-	}
-
-	@Override
-	public boolean adicionar(Estacao obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Estacao alterar(Estacao obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean remover(int id) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

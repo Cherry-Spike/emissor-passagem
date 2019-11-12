@@ -4,50 +4,45 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Logger;
 
-import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.model.entidade.Horario;
 import br.unip.team.emissopassagem.model.entidade.Itinerario;
-import br.unip.team.emissopassagem.model.interfaces.BaseDAO;
 
-public class ItinerarioDAO implements BaseDAO<Itinerario> {
+public class ItinerarioDAO {
 	private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
 
-	@Override
-	public Itinerario obterPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Itinerario> obterTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean adicionar(Itinerario obj) {
+	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,IdHorarioDesembarque,QtdPassagem) values(?,?,?,?,?)";
+		String query = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem) values(?,?,?,?)";
+		String idRetornado[] = { "id" };
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+		try (PreparedStatement pstmt = conexao.prepareStatement(query, idRetornado);) {
 			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
 			pstmt.setInt(2, obj.getIdEmbarqueHorario());
 			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
-			pstmt.setInt(4, obj.getIdDesembarqueHorario());
-			pstmt.setInt(5, obj.getQtdPassagem());
-			return pstmt.execute();
+			pstmt.setInt(4, obj.getQtdPassagem());
+			pstmt.getGeneratedKeys();
+
+			int linhasAfetadas = pstmt.executeUpdate();
+
+			if (linhasAfetadas == 0) {
+				throw new SQLException("Insert falhou, nenhuma linha afetada.");
+			}
+
+			try (ResultSet rs = pstmt.getGeneratedKeys()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
-		return false;
+		return 0;
 	}
 
-	public boolean ValidaRelacao(int idEstacao, int idHorario) {
+	public boolean validaRelacao(int idEstacao, int idHorario) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String query = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
 		boolean existe = false;
@@ -68,15 +63,23 @@ public class ItinerarioDAO implements BaseDAO<Itinerario> {
 		return existe;
 	}
 
-	@Override
-	public Itinerario alterar(Itinerario obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public boolean alterarItinerario(Itinerario obj) {
+		Connection conexao = ConnectionFactory.conexaoSQLServer();
+		String query = "update Itinerario"
+				+ "set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 
-	@Override
-	public boolean remover(int id) {
-		// TODO Auto-generated method stub
+		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
+			pstmt.setInt(2, obj.getIdEmbarqueHorario());
+			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
+			pstmt.setInt(4, obj.getQtdPassagem());
+			pstmt.setInt(5, obj.getQtdPassagem());
+			return pstmt.execute();
+		} catch (SQLException e) {
+			LOGGER.info("Erro na query SQL");
+		} catch (Exception e) {
+			LOGGER.severe(e.getMessage());
+		}
 		return false;
 	}
 
