@@ -3,7 +3,13 @@ package br.unip.team.emissopassagem.view.Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public class TelaEstacaoDb extends Tela {
 
@@ -19,12 +25,15 @@ public class TelaEstacaoDb extends Tela {
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
 		
-		setLabel(contentPane, "Escolha a estação de destino", 180, 100, 500, 30, 20);		
-		setComboBox(contentPane, 170, 150, 300, 60);		
+		setLabel(contentPane, "Escolha a estação de destino", 180, 100, 500, 30, 20);				
+		JComboBox <Object> cb = setComboBox(contentPane, 170, 150, 300, 60);
+		setComboItems(cb);
+		JButton prox = setButtonProx(contentPane);
+		JButton cancel = setButtonCancel(contentPane);
 		
 		//Event Listener
 		
-		setButtonProx(contentPane).addActionListener(new ActionListener() {
+		prox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
@@ -32,7 +41,7 @@ public class TelaEstacaoDb extends Tela {
 			}
 		});
 		
-		setButtonCancel(contentPane).addActionListener(new ActionListener() {
+		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
@@ -40,8 +49,23 @@ public class TelaEstacaoDb extends Tela {
 			}
 		});
 		
-		return contentPane;
+		cb.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(cb.getSelectedItem() != null) {
+					prox.setEnabled(true);
+				}
+			}
+		});
 		
+		return contentPane;		
+	}
+	
+	public void setComboItems (JComboBox<Object> cb) {		
+		EstacaoDAO estacaoDAO = new EstacaoDAO();
+		for(Estacao estacao: estacaoDAO.obterTodos()) {
+			cb.addItem(estacao);
+		}		
 	}
 
 }

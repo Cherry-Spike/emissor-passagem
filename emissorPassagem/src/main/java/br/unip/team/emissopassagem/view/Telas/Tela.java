@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
+
 public abstract class Tela {
 
 	protected JPanel basePane;
@@ -33,7 +36,7 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 		
 		JButton btnProx = new JButton("PROXIMO");
 		btnProx.setBounds(375, 360, 200, 50);
-		//btnProx.setEnabled(false);
+		btnProx.setEnabled(false);
 		btnProx.setFont(new Font("Arial", Font.BOLD, 23));
 		btnProx.setBackground(new Color(0, 153, 255));
 		btnProx.setForeground(Color.white);
@@ -83,10 +86,6 @@ public void setNewPane(JPanel contentPane, JPanel basePane) {
 		cb.setFont(new Font(cb.getFont().getName(), cb.getFont().getStyle(), 18));
 		cb.setFocusable(false);
 		cb.setBorder(null);
-		/*EstacaoDAO estacaoDAO = new EstacaoDAO();
-		for(Estacao estacao: estacaoDAO.obterTodos()) {
-			cbEstacao.addItem(estacao);
-		}*/
 		contentPane.add(cb);
 		
 		return cb;
