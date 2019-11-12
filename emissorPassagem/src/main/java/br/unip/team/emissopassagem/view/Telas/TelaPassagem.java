@@ -3,6 +3,8 @@ package br.unip.team.emissopassagem.view.Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -21,21 +23,25 @@ public class TelaPassagem extends Tela {
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
 		
-		setLabel(contentPane, "Escolha um Horário:", 220, 35, 500, 30, 20);
-		setComboBox(contentPane, 220, 85, 200, 60);
-		setLabel(contentPane, "Escolha a quantidade de passagens:", 155, 175, 500, 30, 20);
+		setLabel(contentPane, "Escolha um Horário:", 220, 35, 500, 30, 20);		
+		JComboBox<Object> cbHorario = setComboBox(contentPane, 220, 85, 200, 60);
+		cbHorario.addItem("Teste");
 		
+		setLabel(contentPane, "Escolha a quantidade de passagens:", 155, 175, 500, 30, 20);		
 		@SuppressWarnings("rawtypes")
-		JComboBox cb = setComboBox(contentPane, 270, 225, 100, 60);	
-		cb.addItem(1);
-		cb.addItem(2);
-		cb.addItem(3);
-		cb.addItem(4);
-		cb.addItem(5);
+		JComboBox cbQtd = setComboBox(contentPane, 270, 225, 100, 60);	
+		cbQtd.addItem(1);
+		cbQtd.addItem(2);
+		cbQtd.addItem(3);
+		cbQtd.addItem(4);
+		cbQtd.addItem(5);
+		
+		JButton prox = setButtonProx(contentPane);
+		JButton cancel = setButtonCancel(contentPane);
 		
 		//Event Listener
 		
-		setButtonProx(contentPane).addActionListener(new ActionListener() {
+		prox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
@@ -43,11 +49,29 @@ public class TelaPassagem extends Tela {
 			}
 		});
 		
-		setButtonCancel(contentPane).addActionListener(new ActionListener() {
+		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.hide();
 				backPane.show();
+			}
+		});
+		
+		cbHorario.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(cbHorario.getSelectedItem() != null && cbQtd.getSelectedItem() != null) {
+					prox.setEnabled(true);
+				}
+			}
+		});
+		
+		cbQtd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(cbQtd.getSelectedItem() != null && cbHorario.getSelectedItem() != null) {
+					prox.setEnabled(true);
+				}
 			}
 		});
 		

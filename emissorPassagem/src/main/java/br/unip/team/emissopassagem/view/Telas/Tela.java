@@ -12,9 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
-
 public abstract class Tela {
 
 	protected JPanel basePane;

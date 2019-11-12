@@ -27,7 +27,7 @@ public class TelaEstacaoDb extends Tela {
 		
 		setLabel(contentPane, "Escolha a estação de destino", 180, 100, 500, 30, 20);				
 		JComboBox <Object> cb = setComboBox(contentPane, 170, 150, 300, 60);
-		setComboItems(cb);
+		setCbEstacao(cb);
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
 		
@@ -58,10 +58,11 @@ public class TelaEstacaoDb extends Tela {
 			}
 		});
 		
-		return contentPane;		
+		return contentPane;
+		
 	}
 	
-	public void setComboItems (JComboBox<Object> cb) {		
+	public void setCbEstacao (JComboBox<Object> cb) {		
 		EstacaoDAO estacaoDAO = new EstacaoDAO();
 		for(Estacao estacao: estacaoDAO.obterTodos()) {
 			cb.addItem(estacao);
