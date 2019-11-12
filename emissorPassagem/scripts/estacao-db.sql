@@ -53,3 +53,15 @@ create table Trem
     IdEstacaoFinal  int foreign key references Estacao(Id),
 )
 go
+
+create tavle Log
+(
+    Id int primary key identity(1,1),
+    HoraCompra Time,
+    NmCartao bigint,
+    Pin int,
+    idEstacaoEmbarque int foreign key references Estacao(Id),
+    IdEstacaoDesembarque  int foreign key references Estacao(Id),
+    IdHorarioEmbarque int foreign key references Horario(Id),
+)
+go
