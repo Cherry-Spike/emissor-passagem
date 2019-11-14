@@ -30,8 +30,8 @@ public class TelaEmissao extends Tela {
 		setButtonCancel(contentPane).addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
-				backPane.show();
+				contentPane.setVisible(false);
+				backPane.setVisible(true);
 			}
 		});
 		
