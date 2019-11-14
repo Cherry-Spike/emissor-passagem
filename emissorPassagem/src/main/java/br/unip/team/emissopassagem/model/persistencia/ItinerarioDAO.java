@@ -9,14 +9,16 @@ import java.util.logging.Logger;
 import br.unip.team.emissopassagem.model.entidade.Itinerario;
 
 public class ItinerarioDAO {
-	private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ItinerarioDAO.class.getName());
+	private static final String INSERT_ITINERARIO = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem) values(?,?,?,?)";
+	private static final String VALIDA_ESTACAOHORARIO = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
+	private static final String UPDATE_ITENARARIO = "update Itinerario set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 
 	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem) values(?,?,?,?)";
 		String idRetornado[] = { "id" };
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(query, idRetornado);) {
+		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
 			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
 			pstmt.setInt(2, obj.getIdEmbarqueHorario());
 			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
@@ -42,12 +44,11 @@ public class ItinerarioDAO {
 		return 0;
 	}
 
-	public boolean validaRelacao(int idEstacao, int idHorario) {
+	public boolean validaRelacionamento(int idEstacao, int idHorario) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
 		boolean existe = false;
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+		try (PreparedStatement pstmt = conexao.prepareStatement(VALIDA_ESTACAOHORARIO);) {
 			pstmt.setInt(1, idEstacao);
 			pstmt.setInt(2, idHorario);
 			ResultSet rs = pstmt.executeQuery();
@@ -65,10 +66,8 @@ public class ItinerarioDAO {
 
 	public boolean alterarItinerario(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String query = "update Itinerario"
-				+ "set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(query);) {
+		try (PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ITENARARIO);) {
 			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
 			pstmt.setInt(2, obj.getIdEmbarqueHorario());
 			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
