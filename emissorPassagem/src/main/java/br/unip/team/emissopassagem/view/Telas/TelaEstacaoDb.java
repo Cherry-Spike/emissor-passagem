@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 import br.unip.team.emissopassagem.model.servico.EstacaoServico;
 
 public class TelaEstacaoDb extends Tela {
