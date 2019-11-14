@@ -10,8 +10,11 @@ import javax.swing.JPanel;
 
 import br.unip.team.emissopassagem.model.entidade.Estacao;
 import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
+import br.unip.team.emissopassagem.model.servico.EstacaoServico;
 
 public class TelaEstacaoDb extends Tela {
+
+	private EstacaoServico estacaoServico = new EstacaoServico();
 
 	public TelaEstacaoDb(JPanel basePane, JPanel backPane) {
 		setBasePane(basePane);
@@ -63,8 +66,7 @@ public class TelaEstacaoDb extends Tela {
 	}
 	
 	public void setCbEstacao (JComboBox<Object> cb) {		
-		EstacaoDAO estacaoDAO = new EstacaoDAO();
-		for(Estacao estacao: estacaoDAO.obterTodos()) {
+		for(Estacao estacao: estacaoServico.obterTodas()) {
 			cb.addItem(estacao);
 		}		
 	}
