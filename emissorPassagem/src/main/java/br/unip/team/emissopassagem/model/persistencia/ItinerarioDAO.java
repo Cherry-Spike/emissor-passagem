@@ -16,7 +16,7 @@ public class ItinerarioDAO {
 
 	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String idRetornado[] = { "id" };
+		String []idRetornado = { "id" };
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
 			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
@@ -51,11 +51,11 @@ public class ItinerarioDAO {
 		try (PreparedStatement pstmt = conexao.prepareStatement(VALIDA_ESTACAOHORARIO);) {
 			pstmt.setInt(1, idEstacao);
 			pstmt.setInt(2, idHorario);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next())
-				existe = true;
-			rs.close();
-			return existe;
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next())
+					existe = true;
+				return existe;
+			}
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
 		} catch (Exception e) {

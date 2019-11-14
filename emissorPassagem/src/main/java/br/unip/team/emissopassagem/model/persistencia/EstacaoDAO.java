@@ -20,7 +20,7 @@ public class EstacaoDAO {
 	private static final String ESTACAO_POR_ID = "select id, nome from Estacao where id = ?";
 	private static final String TODAS_ESTACOES = "select id, nome from Estacao";
 
-	public List<Estacao> obterTodos() {
+	public List<Estacao> obterTodas() {
 		List<Estacao> estacoes = new ArrayList<>();
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
@@ -44,21 +44,21 @@ public class EstacaoDAO {
 	public Estacao obterEstacaoHorarios(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
-		Estacao estacao = new Estacao();
-
 		try (PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_HORARIOS);) {
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				if (estacao.getNome() == null) {
-					estacao.setNome(rs.getString("nomeEstacao"));
-					estacao.setId(rs.getInt("idEstacao"));
+			Estacao estacao = new Estacao();
+			try (ResultSet rs = pstmt.executeQuery();) {
+
+				while (rs.next()) {
+					if (estacao.getNome() == null) {
+						estacao.setNome(rs.getString("nomeEstacao"));
+						estacao.setId(rs.getInt("idEstacao"));
+					}
+					Horario horario = new Horario(rs.getTime("Hora").toString());
+					horario.setId(rs.getInt("idHorario"));
+					estacao.setHorarios(horario);
+					return estacao;
 				}
-				Horario horario = new Horario(rs.getTime("Hora").toString());
-				horario.setId(rs.getInt("idHorario"));
-				estacao.setHorarios(horario);
-				rs.close();
-				return estacao;
 			}
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
@@ -70,19 +70,19 @@ public class EstacaoDAO {
 
 	public Estacao obterPorId(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		Estacao estacao = new Estacao();
-
 		try (PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_POR_ID);) {
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				estacao.setNome(rs.getString("nome"));
-				estacao.setId(rs.getInt("id"));
+			try (ResultSet rs = pstmt.executeQuery()) {
+				Estacao estacao = new Estacao();
+
+				while (rs.next()) {
+					estacao.setNome(rs.getString("nome"));
+					estacao.setId(rs.getInt("id"));
+				}
+				return estacao;
 			}
-			rs.close();
-			return estacao;
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query obter estação por id.");
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}

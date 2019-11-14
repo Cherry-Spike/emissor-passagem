@@ -27,21 +27,21 @@ public class TremDAO {
 		}
 		return false;
 	}
-	
+
 	public Trem obterPorIdCidadeInicial(int id) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		Trem trem = new Trem();
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(TREM_POR_IDESTACAOINICIAL);) {
+		try (PreparedStatement pstmt = conexao.prepareStatement(TREM_POR_IDESTACAOINICIAL)) {
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				trem.setAssentoDisponivel(rs.getInt("assentoDisponivel"));
-				trem.setTotalAssento(rs.getInt("totalAssento"));
-				trem.setIdEstacaoFinal(rs.getInt("idEstacaoFinal"));
+			try (ResultSet rs = pstmt.executeQuery()) {
+				Trem trem = new Trem();
+				while (rs.next()) {
+					trem.setAssentoDisponivel(rs.getInt("assentoDisponivel"));
+					trem.setTotalAssento(rs.getInt("totalAssento"));
+					trem.setIdEstacaoFinal(rs.getInt("idEstacaoFinal"));
+				}
+				return trem;
 			}
-			rs.close();
-			return trem;
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
 		} catch (Exception e) {
