@@ -35,7 +35,7 @@ public class TelaPagamento extends Tela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setVisible(false);
-				TelaEmissao telaEmissao = new TelaEmissao(basePane, backPane);
+				new TelaEmissao(basePane, backPane);
 			}
 		});
 		

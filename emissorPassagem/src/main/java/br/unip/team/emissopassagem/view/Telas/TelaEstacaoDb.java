@@ -2,11 +2,9 @@ package br.unip.team.emissopassagem.view.Telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
 import br.unip.team.emissopassagem.model.entidade.Estacao;
 import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
@@ -36,7 +34,7 @@ public class TelaEstacaoDb extends Tela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setVisible(false);
-				TelaPassagem telaPassagem = new TelaPassagem(basePane, backPane);
+				new TelaPassagem(basePane, backPane);
 			}
 		});
 		

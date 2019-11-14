@@ -19,7 +19,7 @@ public abstract class Tela {
 	
 	public Tela() {}
 	
-public void setNewPane(JPanel contentPane, JPanel basePane) {
+	public void setNewPane(JPanel contentPane, JPanel basePane) {
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);

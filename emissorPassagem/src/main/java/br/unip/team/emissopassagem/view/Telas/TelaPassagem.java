@@ -1,6 +1,5 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -44,7 +43,7 @@ public class TelaPassagem extends Tela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setVisible(false);
-				TelaPagamento telaPagamento = new TelaPagamento(basePane, backPane);
+				new TelaPagamento(basePane, backPane);
 			}
 		});
 		

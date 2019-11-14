@@ -34,7 +34,7 @@ public class TelaEstacaoEb extends Tela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setVisible(false);
-				TelaEstacaoDb telaEstacoes = new TelaEstacaoDb(basePane, backPane);
+				new TelaEstacaoDb(basePane, backPane);
 			}
 		});
 		
