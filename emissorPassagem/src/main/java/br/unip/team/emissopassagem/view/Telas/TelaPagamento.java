@@ -1,11 +1,7 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -25,8 +21,10 @@ public class TelaPagamento extends Tela {
 		contentPane.setBackground(corDeFundo);
 		
 		setLabel(contentPane, "Digite o numero do cartão:", 150, 40, 500, 30, 18);		
+		@SuppressWarnings("unused")
 		JTextField txt = setTextField(contentPane, 150, 90, 300, 50, 15);		
 		setLabel(contentPane, "Digite o PIN:", 150, 185, 500, 30, 18);		
+		@SuppressWarnings("unused")
 		JTextField txt2 = setTextField(contentPane, 150, 230, 100, 50, 3);
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
@@ -36,7 +34,7 @@ public class TelaPagamento extends Tela {
 		prox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
+				contentPane.setVisible(false);
 				TelaEmissao telaEmissao = new TelaEmissao(basePane, backPane);
 			}
 		});
@@ -44,8 +42,8 @@ public class TelaPagamento extends Tela {
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
-				backPane.show();
+				contentPane.setVisible(false);
+				backPane.setVisible(true);
 			}
 		});
 		

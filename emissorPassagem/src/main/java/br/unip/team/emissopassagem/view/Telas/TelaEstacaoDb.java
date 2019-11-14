@@ -1,6 +1,5 @@
 package br.unip.team.emissopassagem.view.Telas;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,7 +35,7 @@ public class TelaEstacaoDb extends Tela {
 		prox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
+				contentPane.setVisible(false);
 				TelaPassagem telaPassagem = new TelaPassagem(basePane, backPane);
 			}
 		});
@@ -44,8 +43,8 @@ public class TelaEstacaoDb extends Tela {
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.hide();
-				backPane.show();
+				contentPane.setVisible(false);
+				backPane.setVisible(true);
 			}
 		});
 		
