@@ -54,7 +54,7 @@ create table Trem
 )
 go
 
-create tavle Log
+create table Log
 (
     Id int primary key identity(1,1),
     HoraCompra Time,
