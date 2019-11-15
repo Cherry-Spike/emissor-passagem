@@ -15,10 +15,10 @@ import br.unip.team.emissopassagem.model.entidade.Horario;
 
 public class EstacaoDAO {
 	private static final Logger LOGGER = Logger.getLogger(EstacaoDAO.class.getName());
-	private static final String ESTACAO_HORARIOS = "select cd.id as idEstacao, cd.nome as nomeEstacao, hr.Hora,  hr.id as idHorario from EstacaoHorario as eh "
-			+ "inner join Horario as hr on eh.IdHorario = hr.Id inner join Estacao as cd on eh.IdEstacao = cd.Id where eh.IdEstacao = ?";
+	private static final String ESTACAO_HORARIOS = "select hr.Hora,  hr.id as idHorario from EstacaoHorario as eh "
+			+ "inner join Horario as hr on eh.IdHorario = hr.Id inner join Estacao as cd on eh.IdEstacao = cd.Id where eh.IdEstacao = ? order by hr.Hora";
 	private static final String ESTACAO_POR_ID = "select id, nome from Estacao where id = ?";
-	private static final String TODAS_ESTACOES = "select id, nome from Estacao";
+	private static final String TODAS_ESTACOES = "select id, nome from Estacao order by nome";
 
 	public List<Estacao> obterTodas() {
 		List<Estacao> estacoes = new ArrayList<>();

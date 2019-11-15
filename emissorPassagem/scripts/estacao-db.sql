@@ -32,7 +32,8 @@ create table Itinerario
     IdEstacaoEmbarque  int foreign key references Estacao(Id),
     IdHorarioEmbarque int foreign key references Horario(Id),
     IdEstacaoDesembarque  int foreign key references Estacao(Id),
-    QtdPassagem int not null
+    QtdPassagem int not null,
+    PrecoPassagem money
 )
 go
 

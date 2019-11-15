@@ -1,3 +1,5 @@
+USE Estacao
+go
 INSERT INTO Estacao (nome) VALUES ('Philadelphia')
 go
 INSERT INTO Estacao (nome) VALUES ('Pennsauken')

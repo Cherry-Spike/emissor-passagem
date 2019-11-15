@@ -1,14 +1,18 @@
 package br.unip.team.emissopassagem.view;
 
 import java.awt.EventQueue;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.unip.team.emissopassagem.view.Telas.TelaIniciar;
+import br.unip.team.emissopassagem.view.tela.TelaIniciar;
 
 public class Apresentacao extends JFrame {
+	
+	private static final long serialVersionUID = -8691656276980851401L;
+	private static final Logger LOGGER = Logger.getLogger(Apresentacao.class.getName());
 	
 	private JPanel basePane;
 	
@@ -25,17 +29,15 @@ public class Apresentacao extends JFrame {
 		new TelaIniciar(basePane);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) {
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+		EventQueue.invokeLater(() ->{
 				try {
 					Apresentacao frame = new Apresentacao();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.info(e.getMessage());
 				}
-			}
 		});
 	}
 		

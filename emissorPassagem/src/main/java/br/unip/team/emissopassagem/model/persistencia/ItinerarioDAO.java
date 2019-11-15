@@ -10,24 +10,23 @@ import br.unip.team.emissopassagem.model.entidade.Itinerario;
 
 public class ItinerarioDAO {
 	private static final Logger LOGGER = Logger.getLogger(ItinerarioDAO.class.getName());
-	private static final String INSERT_ITINERARIO = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem) values(?,?,?,?)";
+	private static final String INSERT_ITINERARIO = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem,PrecoPassagem) values(?,?,?,?,?)";
 	private static final String VALIDA_ESTACAOHORARIO = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
 	private static final String UPDATE_ITENARARIO = "update Itinerario set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 
 	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		String []idRetornado = { "id" };
+		String[] idRetornado = { "id" };
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
 			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
 			pstmt.setInt(2, obj.getIdEmbarqueHorario());
 			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
 			pstmt.setInt(4, obj.getQtdPassagem());
+			pstmt.setDouble(5, obj.getPrecoPassagem());
 			pstmt.getGeneratedKeys();
 
-			int linhasAfetadas = pstmt.executeUpdate();
-
-			if (linhasAfetadas == 0) {
+			if (pstmt.executeUpdate() == 0) {
 				throw new SQLException("Insert falhou, nenhuma linha afetada.");
 			}
 

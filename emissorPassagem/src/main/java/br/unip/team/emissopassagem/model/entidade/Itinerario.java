@@ -5,6 +5,7 @@ public class Itinerario extends EntidadeBase{
 	private int idEmbarqueHorario;
 	private int idEstacaoDesembarque;
 	private int qtdPassagem;
+	private double preco;
 	
 	public int getIdEstacaoEmbarque() {
 		return idEstacaoEmbarque;
@@ -30,5 +31,11 @@ public class Itinerario extends EntidadeBase{
 	public void setQtdPassagem(int qtdPassagem) {
 		this.qtdPassagem = qtdPassagem;
 	}
+	public void setPrecoPassagem(double preco) {
+		this.preco = preco;
+	}
 
+	public double getPrecoPassagem() {
+		return preco;
+	}
 }
