@@ -30,18 +30,10 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 		contentPane.add(cb);
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
+		
+		prox.addActionListener(e -> trocaFrame("TelaPassagem", basePane, contentPane));
 
-		// Event Listener
-
-		prox.addActionListener(e -> {
-			contentPane.setVisible(false);
-			new TelaPassagem(basePane, backPane);
-		});
-
-		cancel.addActionListener(e -> {
-			contentPane.setVisible(false);
-			backPane.setVisible(true);
-		});
+		//cancel.addActionListener(e -> trocaFrame("TelaEstacaoEb", contentPane, basePane));
 
 		cb.addActionListener(e -> {
 			if (cb.getSelectedItem() != null) {

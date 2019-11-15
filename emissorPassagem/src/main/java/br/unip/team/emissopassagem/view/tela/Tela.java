@@ -6,10 +6,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import br.unip.team.emissopassagem.view.MainFrame;
 import br.unip.team.emissopassagem.view.PanelBase;
 
 public abstract class Tela<E> extends PanelBase{
@@ -106,5 +109,12 @@ public abstract class Tela<E> extends PanelBase{
 		contentPane.add(txt);
 
 		return txt;
+	}
+	public void trocaFrame(String nomeTela, JPanel basePane, JPanel backPane) {
+		backPane.setVisible(false);
+		JFrame frameAnterior = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, basePane);
+		frameAnterior.dispose();
+		JFrame telaEstacaoEb = new MainFrame(nomeTela, basePane, backPane);
+		telaEstacaoEb.setVisible(true);
 	}
 }

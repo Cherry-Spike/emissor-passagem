@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import br.unip.team.emissopassagem.view.MainFrame;
 import br.unip.team.emissopassagem.view.PanelBase;
 
-public class TelaIniciar extends PanelBase{
+public class TelaIniciar extends PanelBase {
 
 	public TelaIniciar(JPanel basePane) {
 		setBasePane(basePane);
@@ -30,25 +33,21 @@ public class TelaIniciar extends PanelBase{
 		btnIniciar.setBorderPainted(false);
 		btnIniciar.setFocusPainted(false);
 		contentPane.add(btnIniciar);
-		
+
 		contentPane.add(setLabel("Bem Vindo", 165, 70, 350, 60, 60));
 		contentPane.add(setLabel("Precione o botão Iniciar para comprar sua passagem", 75, 165, 500, 30, 20));
-		
-		//TODO Corrigir path
+
+		// TODO Corrigir path
 		ImageIcon img = new ImageIcon("assets\\train.png");
 		JLabel imgTrem = new JLabel(img);
 		imgTrem.setBounds(0, 0, 640, 280);
 		contentPane.add(imgTrem);
 
-		btnIniciar.addActionListener(e -> {
-			contentPane.setVisible(false);
-			new TelaEstacaoEb(basePane, contentPane);
-
-		});
+		btnIniciar.addActionListener(e -> trocaFrame("TelaEstacaoEb", contentPane, basePane));
 
 		return contentPane;
 	}
-	
+
 	public JLabel setLabel(String str, int x, int y, int l, int a, int size) {
 
 		JLabel lb = new JLabel(str);
@@ -56,5 +55,13 @@ public class TelaIniciar extends PanelBase{
 		lb.setForeground(Color.white);
 		lb.setFont(new Font(lb.getFont().getName(), lb.getFont().getStyle(), size));
 		return lb;
+	}
+
+	public void trocaFrame(String nomeTela, JPanel basePane, JPanel backPane) {
+		basePane.setVisible(false);
+		JFrame frameAnterior = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, basePane);
+		frameAnterior.dispose();
+		JFrame telaEstacaoEb = new MainFrame(nomeTela, backPane, basePane);
+		telaEstacaoEb.setVisible(true);
 	}
 }
