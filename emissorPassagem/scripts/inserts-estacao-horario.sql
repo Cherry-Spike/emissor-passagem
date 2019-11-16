@@ -246,6 +246,10 @@ go
 INSERT INTO Horario (Id,Hora) VALUES (112,'21:35:00')
 go
 
+insert into Sentido(id,descricao)
+values(1,'Philadelphia'), (2,'Atlantic City')
+go
+
 BEGIN
 Declare @idEstacao int
 Select @idEstacao = id from Estacao WHERE nome = 'Philadelphia'

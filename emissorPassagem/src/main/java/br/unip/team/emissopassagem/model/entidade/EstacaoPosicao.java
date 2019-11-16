@@ -22,11 +22,11 @@ public enum EstacaoPosicao {
 		return -1;
 	}
 	
-	public static String calcularSentido(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {
+	public static int calcularSentido(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {
 		if(posicaoEstacaoEmb - posicaoEstacaoDesem < 0) {
-			return PRIMEIRA.getNome();
+			return 2;
 		}
-		return SEXTA.getNome();
+		return 1;
 	}
 
 	public static int calcularTotalEstacaoPercorrida(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {

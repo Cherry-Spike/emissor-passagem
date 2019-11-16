@@ -18,11 +18,18 @@ create table Estacao
 )
 go
 
+create table Sentido(
+    id int primary key,
+    descricao varchar(100)
+)
+go
+
 create table EstacaoHorario
 (
     Id int primary key identity(1,1),
     IdEstacao  int foreign key references Estacao(Id),
-    IdHorario int foreign key references Horario(Id)
+    IdHorario int foreign key references Horario(Id),
+    IdSentido int foreign key references Sentido(Id)
 )
 go
 

@@ -33,7 +33,6 @@ public class TelaEstacaoEb extends Tela<Estacao> {
 
 		prox.addActionListener(e -> {
 			contentPane.setVisible(false);
-			System.out.println(estacaoSelecionada.getId());
 			new TelaEstacaoDb(basePane, contentPane, estacaoSelecionada);
 			});
 

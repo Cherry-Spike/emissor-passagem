@@ -16,7 +16,7 @@ import br.unip.team.emissopassagem.model.entidade.Horario;
 public class EstacaoDAO {
 	private static final Logger LOGGER = Logger.getLogger(EstacaoDAO.class.getName());
 	private static final String ESTACAO_HORARIOS = "select hr.Hora,  hr.id as idHorario from EstacaoHorario as eh "
-			+ "inner join Horario as hr on eh.IdHorario = hr.Id inner join Estacao as cd on eh.IdEstacao = cd.Id where eh.IdEstacao = ? and sentido = ? order by hr.Hora";
+			+ "inner join Horario as hr on eh.IdHorario = hr.Id inner join Estacao as cd on eh.IdEstacao = cd.Id where eh.IdEstacao = ? and eh.IdSentido = ? order by hr.Hora";
 	private static final String ESTACAO_POR_ID = "select id, nome from Estacao where id = ?";
 	private static final String TODAS_ESTACOES = "select id, nome from Estacao order by nome";
 
@@ -41,13 +41,13 @@ public class EstacaoDAO {
 		return Collections.emptyList();
 	}
 
-	public List<Horario> obterEstacaoHorarios(int id, String sentido) {
+	public List<Horario> obterEstacaoHorarios(int id, int sentido) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		List<Horario> horarios = new ArrayList<>();
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_HORARIOS);) {
 			pstmt.setInt(1, id);
-			pstmt.setString(2, sentido);
+			pstmt.setInt(2, sentido);
 			try (ResultSet rs = pstmt.executeQuery();) {
 				while (rs.next()) {
 					Horario horario = new Horario(rs.getTime("Hora").toString());

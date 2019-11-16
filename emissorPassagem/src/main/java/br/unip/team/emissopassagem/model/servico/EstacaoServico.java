@@ -27,7 +27,7 @@ public class EstacaoServico {
 		int embPos = EstacaoPosicao.obterPosicaoEstacao(estacaoEmbarque.getNome());
 		int desemPos = EstacaoPosicao.obterPosicaoEstacao(estacaoDesembarque.getNome());
 		
-		String sentido = EstacaoPosicao.calcularSentido(embPos, desemPos);
+		int sentido = EstacaoPosicao.calcularSentido(embPos, desemPos);
 		List<Horario> horarios = estacaoDAO.obterEstacaoHorarios(estacaoEmbarque.getId(), sentido);
 		
 		if(horarios == null) {
