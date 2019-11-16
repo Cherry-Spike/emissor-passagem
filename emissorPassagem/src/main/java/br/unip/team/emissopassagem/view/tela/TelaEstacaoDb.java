@@ -13,10 +13,10 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 	private Estacao estacaoSelecionada;
 	
 	public TelaEstacaoDb(JPanel basePane, JPanel backPane, int inputIdEstacaoEmbarque) {
+		idEstacaoEmbarque = inputIdEstacaoEmbarque;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
-		idEstacaoEmbarque = inputIdEstacaoEmbarque;
 	}
 
 	@Override
@@ -40,8 +40,7 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 		cancel.addActionListener(e -> {
 			contentPane.setVisible(false);
 			backPane.setVisible(true);
-		}
-		);
+		});
 
 		cb.addActionListener(e -> {
 			estacaoSelecionada = (Estacao) cb.getSelectedItem();
@@ -57,10 +56,8 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 	public void setCbEstacao(JComboBox<Estacao> cb) {
 		Estacao estacaoEmbarque = estacaoDbController.obterEstacaoEmbarquePorId(idEstacaoEmbarque);
 		for (Estacao estacao : estacaoDbController.obterTodasEstacoes()) {
-			if(estacaoEmbarque.getNome() == estacao.getNome())
-				continue;
-			cb.addItem(estacao);
+			if(estacaoEmbarque.getId() != estacao.getId())
+				cb.addItem(estacao);			
 		}
 	}
-
 }
