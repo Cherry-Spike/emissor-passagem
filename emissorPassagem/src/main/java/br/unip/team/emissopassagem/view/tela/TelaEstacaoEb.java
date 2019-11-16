@@ -2,17 +2,15 @@ package br.unip.team.emissopassagem.view.tela;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import br.unip.team.emissopassagem.controller.EstacaoEmbarqueController;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.view.MainFrame;
 
 public class TelaEstacaoEb extends Tela<Estacao> {
 
 	EstacaoEmbarqueController estacaoEbController = new EstacaoEmbarqueController(this);
+	private Estacao estacaoSelecionada;
 
 	public TelaEstacaoEb(JPanel basePane, JPanel backPane) {
 		setBasePane(basePane);
@@ -33,7 +31,10 @@ public class TelaEstacaoEb extends Tela<Estacao> {
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
 
-		prox.addActionListener(e -> trocaFrame("TelaEstacaoDb", basePane, contentPane));
+		prox.addActionListener(e -> {
+			contentPane.setVisible(false);
+			new TelaEstacaoDb(basePane, contentPane, estacaoSelecionada.getId());
+			});
 
 		cancel.addActionListener(e -> {
 			contentPane.setVisible(false);
@@ -41,8 +42,8 @@ public class TelaEstacaoEb extends Tela<Estacao> {
 		});
 
 		cb.addActionListener(e -> {
-			Estacao estacao = (Estacao) cb.getSelectedItem();
-			if (cb.getSelectedItem() != null) {
+			estacaoSelecionada = (Estacao) cb.getSelectedItem();
+			if (estacaoSelecionada != null) {
 				prox.setEnabled(true);
 			}
 		});

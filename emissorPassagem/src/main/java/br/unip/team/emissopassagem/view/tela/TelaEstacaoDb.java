@@ -5,17 +5,18 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import br.unip.team.emissopassagem.controller.EstacaoDesembarqueController;
-import br.unip.team.emissopassagem.controller.EstacaoEmbarqueController;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
-import br.unip.team.emissopassagem.model.servico.EstacaoServico;
 
 public class TelaEstacaoDb extends Tela<Estacao> {
-
 	EstacaoDesembarqueController estacaoDbController = new EstacaoDesembarqueController(this);
-	public TelaEstacaoDb(JPanel basePane, JPanel backPane) {
+	private int idEstacaoEmbarque;
+	private Estacao estacaoSelecionada;
+	
+	public TelaEstacaoDb(JPanel basePane, JPanel backPane, int inputIdEstacaoEmbarque) {
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
+		idEstacaoEmbarque = inputIdEstacaoEmbarque;
 	}
 
 	@Override
@@ -31,12 +32,20 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
 		
-		prox.addActionListener(e -> trocaFrame("TelaPassagem", basePane, contentPane));
+		prox.addActionListener(e -> {
+			contentPane.setVisible(false);
+			new TelaPassagem(basePane, backPane, idEstacaoEmbarque, estacaoSelecionada.getId());
+		});
 
-		//cancel.addActionListener(e -> trocaFrame("TelaEstacaoEb", contentPane, basePane));
+		cancel.addActionListener(e -> {
+			contentPane.setVisible(false);
+			backPane.setVisible(true);
+		}
+		);
 
 		cb.addActionListener(e -> {
-			if (cb.getSelectedItem() != null) {
+			estacaoSelecionada = (Estacao) cb.getSelectedItem();
+			if (estacaoSelecionada != null) {
 				prox.setEnabled(true);
 			}
 		});
@@ -46,8 +55,10 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 	}
 
 	public void setCbEstacao(JComboBox<Estacao> cb) {
+		Estacao estacaoEmbarque = estacaoDbController.obterEstacaoEmbarquePorId(idEstacaoEmbarque);
 		for (Estacao estacao : estacaoDbController.obterTodasEstacoes()) {
-			
+			if(estacaoEmbarque.getNome() == estacao.getNome())
+				continue;
 			cb.addItem(estacao);
 		}
 	}

@@ -111,10 +111,10 @@ public abstract class Tela<E> extends PanelBase{
 		return txt;
 	}
 	public void trocaFrame(String nomeTela, JPanel basePane, JPanel backPane) {
-		backPane.setVisible(false);
 		JFrame frameAnterior = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, basePane);
 		frameAnterior.dispose();
 		JFrame telaEstacaoEb = new MainFrame(nomeTela, basePane, backPane);
+		backPane.setVisible(false);
 		telaEstacaoEb.setVisible(true);
 	}
 }

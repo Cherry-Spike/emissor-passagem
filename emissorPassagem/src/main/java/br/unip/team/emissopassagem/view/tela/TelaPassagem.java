@@ -6,14 +6,19 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import br.unip.team.emissopassagem.model.entidade.Estacao;
 import br.unip.team.emissopassagem.model.entidade.Horario;
 
 public class TelaPassagem extends Tela<String> {
+	private int idEstacaoEmbarque;
+	private int idEstacaoDesembarque;
 
-	public TelaPassagem(JPanel basePane, JPanel backPane) {
+	public TelaPassagem(JPanel basePane, JPanel backPane, int idEstacaoEmbarque, int inputIdEstacaoDesembarque) {
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
+		idEstacaoDesembarque = inputIdEstacaoDesembarque;
+		idEstacaoEmbarque = idEstacaoEmbarque;
 	}
 
 	@SuppressWarnings("unchecked")

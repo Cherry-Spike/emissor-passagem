@@ -43,7 +43,10 @@ public class TelaIniciar extends PanelBase {
 		imgTrem.setBounds(0, 0, 640, 280);
 		contentPane.add(imgTrem);
 
-		btnIniciar.addActionListener(e -> trocaFrame("TelaEstacaoEb", contentPane, basePane));
+		btnIniciar.addActionListener(e -> {
+			contentPane.setVisible(false);
+			new TelaEstacaoEb(basePane, contentPane);
+		});
 
 		return contentPane;
 	}
@@ -55,13 +58,5 @@ public class TelaIniciar extends PanelBase {
 		lb.setForeground(Color.white);
 		lb.setFont(new Font(lb.getFont().getName(), lb.getFont().getStyle(), size));
 		return lb;
-	}
-
-	public void trocaFrame(String nomeTela, JPanel basePane, JPanel backPane) {
-		basePane.setVisible(false);
-		JFrame frameAnterior = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, basePane);
-		frameAnterior.dispose();
-		JFrame telaEstacaoEb = new MainFrame(nomeTela, backPane, basePane);
-		telaEstacaoEb.setVisible(true);
 	}
 }
