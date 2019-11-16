@@ -3,15 +3,13 @@ package br.unip.team.emissopassagem.controller;
 import java.util.List;
 
 import br.unip.team.emissopassagem.model.entidade.Estacao;
+import br.unip.team.emissopassagem.model.entidade.Horario;
 import br.unip.team.emissopassagem.model.servico.EstacaoServico;
-import br.unip.team.emissopassagem.view.tela.TelaEstacaoDb;
 
-public class EstacaoDesembarqueController {
-    private TelaEstacaoDb view;
+public class EstacaoController {
     private EstacaoServico servico;
 
-    public EstacaoDesembarqueController(TelaEstacaoDb view){
-        this.view = view;
+    public EstacaoController(){
         servico = new EstacaoServico();
     }
     
@@ -22,4 +20,8 @@ public class EstacaoDesembarqueController {
     public List<Estacao> obterTodasEstacoes() {
     	return servico.obterTodas();
     }
+
+	public List<Horario> obterEstacaoHorarios(int idEstacaoEmbarque, int idEstacaoDesembarque) {
+		return servico.obterEstacaoHorarios(idEstacaoEmbarque, idEstacaoDesembarque);
+	}
 }

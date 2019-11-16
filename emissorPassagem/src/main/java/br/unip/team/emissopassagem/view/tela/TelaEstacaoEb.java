@@ -4,12 +4,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import br.unip.team.emissopassagem.controller.EstacaoEmbarqueController;
+import br.unip.team.emissopassagem.controller.EstacaoController;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
 
 public class TelaEstacaoEb extends Tela<Estacao> {
 
-	EstacaoEmbarqueController estacaoEbController = new EstacaoEmbarqueController(this);
+	EstacaoController estacaoEbController = new EstacaoController();
 	private Estacao estacaoSelecionada;
 
 	public TelaEstacaoEb(JPanel basePane, JPanel backPane) {
@@ -34,7 +34,7 @@ public class TelaEstacaoEb extends Tela<Estacao> {
 		prox.addActionListener(e -> {
 			contentPane.setVisible(false);
 			System.out.println(estacaoSelecionada.getId());
-			new TelaEstacaoDb(basePane, contentPane, estacaoSelecionada.getId());
+			new TelaEstacaoDb(basePane, contentPane, estacaoSelecionada);
 			});
 
 		cancel.addActionListener(e -> {

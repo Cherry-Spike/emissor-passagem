@@ -4,16 +4,16 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import br.unip.team.emissopassagem.controller.EstacaoDesembarqueController;
+import br.unip.team.emissopassagem.controller.EstacaoController;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
 
 public class TelaEstacaoDb extends Tela<Estacao> {
-	EstacaoDesembarqueController estacaoDbController = new EstacaoDesembarqueController(this);
-	private int idEstacaoEmbarque;
+	EstacaoController estacaoController = new EstacaoController();
+	private Estacao estacaoEmbarque;
 	private Estacao estacaoSelecionada;
 	
-	public TelaEstacaoDb(JPanel basePane, JPanel backPane, int inputIdEstacaoEmbarque) {
-		idEstacaoEmbarque = inputIdEstacaoEmbarque;
+	public TelaEstacaoDb(JPanel basePane, JPanel backPane, Estacao inputEstacaoEmbarque) {
+		estacaoEmbarque = inputEstacaoEmbarque;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
@@ -34,7 +34,7 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 		
 		prox.addActionListener(e -> {
 			contentPane.setVisible(false);
-			new TelaPassagem(basePane, backPane, idEstacaoEmbarque, estacaoSelecionada.getId());
+			new TelaPassagem(basePane, backPane, estacaoEmbarque, estacaoSelecionada);
 		});
 
 		cancel.addActionListener(e -> {
@@ -54,8 +54,7 @@ public class TelaEstacaoDb extends Tela<Estacao> {
 	}
 
 	public void setCbEstacao(JComboBox<Estacao> cb) {
-		Estacao estacaoEmbarque = estacaoDbController.obterEstacaoEmbarquePorId(idEstacaoEmbarque);
-		for (Estacao estacao : estacaoDbController.obterTodasEstacoes()) {
+		for (Estacao estacao : estacaoController.obterTodasEstacoes()) {
 			if(estacaoEmbarque.getId() != estacao.getId())
 				cb.addItem(estacao);			
 		}

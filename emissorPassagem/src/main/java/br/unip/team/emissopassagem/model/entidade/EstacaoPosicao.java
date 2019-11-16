@@ -21,6 +21,13 @@ public enum EstacaoPosicao {
 		LOGGER.info("Posição da estação não encontrada.");
 		return -1;
 	}
+	
+	public static String calcularSentido(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {
+		if(posicaoEstacaoEmb - posicaoEstacaoDesem < 0) {
+			return PRIMEIRA.getNome();
+		}
+		return SEXTA.getNome();
+	}
 
 	public static int calcularTotalEstacaoPercorrida(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {
 		return posicaoEstacaoEmb - posicaoEstacaoDesem;

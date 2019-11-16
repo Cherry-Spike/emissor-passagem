@@ -18,7 +18,7 @@ public class ConnectionFactory {
 		ds.setDatabaseName("Estacao");
 		ds.setIntegratedSecurity(true);*/
 		try {
-			String connectionUrl = "jdbc:sqlserver://DESKTOP-E021K2T\\SQLEXPRESS;databaseName=Estacao;integratedSecurity=true;";
+			String connectionUrl = "jdbc:sqlserver://WKSJUN000213\\LOCALDB#CCEF6BDA;databaseName=Estacao;integratedSecurity=true;";
 			return DriverManager.getConnection(connectionUrl);
 		} catch (SQLException e) {
 			LOGGER.log(Level.SEVERE,"Conexão banco de dados Sql Server");
