@@ -56,7 +56,7 @@ public class TelaPassagem extends Tela<String> {
 		prox.addActionListener(e -> {
 			setItinerario(itinerario);
 			contentPane.setVisible(false);
-			new TelaPagamento(basePane, backPane);
+			new TelaPagamento(basePane, backPane, idItinerario);
 		});
 
 		cancel.addActionListener(e -> {
