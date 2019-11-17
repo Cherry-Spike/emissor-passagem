@@ -104,7 +104,7 @@ public class TelaPassagem extends Tela<String> {
 		itinerario.setIdEstacaoDesembarque(estacaoDesembarque.getId());
 		itinerario.setEmbarqueHorario(itinerarioController.obterIdHorario(cbHorario.getSelectedItem().toString()));
 		itinerario.setQtdPassagem((int) cbQtd.getSelectedItem());		
-		itinerarioController.adicionarItinerario(itinerario);
+		itinerarioController.adicionarItinerario(itinerario); //ItinerarioDAO.adicionar() caindo no catch, necessario ajustes!
 		
 	}
 	
