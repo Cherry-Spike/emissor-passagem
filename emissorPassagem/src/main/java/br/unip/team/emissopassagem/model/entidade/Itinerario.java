@@ -16,7 +16,7 @@ public class Itinerario extends EntidadeBase{
 	public int getIdEmbarqueHorario() {
 		return idEmbarqueHorario;
 	}
-	public void setIdEmbarqueHorario(int idEmbarqueHorario) {
+	public void setEmbarqueHorario(int idEmbarqueHorario) {
 		this.idEmbarqueHorario = idEmbarqueHorario;
 	}
 	public int getIdEstacaoDesembarque() {

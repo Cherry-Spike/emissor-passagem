@@ -1,12 +1,11 @@
 package br.unip.team.emissopassagem.view.tela;
 
-import java.sql.Time;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
 import br.unip.team.emissopassagem.controller.EstacaoController;
 import br.unip.team.emissopassagem.controller.ItinerarioController;
 import br.unip.team.emissopassagem.model.entidade.Estacao;
@@ -17,10 +16,10 @@ public class TelaPassagem extends Tela<String> {
 	EstacaoController estacaoController = new EstacaoController();
 	ItinerarioController itinerarioController = new ItinerarioController();
 	private JComboBox<String> cbHorario;
-	private JComboBox<String> cbQtd;
+	private JComboBox<Integer> cbQtd;
 	private Estacao estacaoEmbarque;
 	private Estacao estacaoDesembarque;
-	private Itinerario itinerario;
+	private Itinerario itinerario = new Itinerario();
 
 	public TelaPassagem(JPanel basePane, JPanel backPane, Estacao EstacaoEmbarque, Estacao inputEstacaoDesembarque) {
 		estacaoDesembarque = inputEstacaoDesembarque;
@@ -42,19 +41,19 @@ public class TelaPassagem extends Tela<String> {
 		contentPane.add(cbHorario);
 
 		setLabel(contentPane, "Escolha a quantidade de passagens:", 155, 175, 500, 30, 20);
-		cbQtd = setComboBox(270, 225, 100, 60);
+		cbQtd = setComboBoxInt(270, 225, 100, 60);
 		contentPane.add(cbQtd);
-		cbQtd.addItem("1");
-		cbQtd.addItem("2");
-		cbQtd.addItem("3");
-		cbQtd.addItem("4");
-		cbQtd.addItem("5");
+		cbQtd.addItem(1);
+		cbQtd.addItem(2);
+		cbQtd.addItem(3);
+		cbQtd.addItem(4);
+		cbQtd.addItem(5);
 
 		JButton prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
 
 		prox.addActionListener(e -> {
-			setItinerario();
+			setItinerario(itinerario);
 			contentPane.setVisible(false);
 			new TelaPagamento(basePane, backPane);
 		});
@@ -78,6 +77,19 @@ public class TelaPassagem extends Tela<String> {
 
 		return contentPane;
 	}
+	
+	public JComboBox<Integer> setComboBoxInt(int x, int y, int l, int a) {
+
+		JComboBox<Integer> cb = new JComboBox<>();
+		cb.setBounds(x, y, l, a);
+		cb.setBackground(new Color(196, 217, 237));
+		cb.setForeground(new Color(0, 102, 153));
+		cb.setFont(new Font(cb.getFont().getName(), cb.getFont().getStyle(), 18));
+		cb.setFocusable(false);
+		cb.setBorder(null);
+
+		return cb;
+	}
 
 	public void setCbHorario(JComboBox<String> cb) {
 		List<Horario> horarios = estacaoController.obterEstacaoHorarios(estacaoEmbarque.getId(), estacaoDesembarque.getId());
@@ -86,11 +98,11 @@ public class TelaPassagem extends Tela<String> {
 		}
 	}
 	
-	public void setItinerario() {
+	public void setItinerario(Itinerario itinerario) {
 		
 		itinerario.setIdEstacaoEmbarque(estacaoEmbarque.getId());
 		itinerario.setIdEstacaoDesembarque(estacaoDesembarque.getId());
-		itinerario.setIdEmbarqueHorario((int) cbHorario.getSelectedItem());
+		itinerario.setEmbarqueHorario(itinerarioController.obterIdHorario(cbHorario.getSelectedItem().toString()));
 		itinerario.setQtdPassagem((int) cbQtd.getSelectedItem());		
 		itinerarioController.adicionarItinerario(itinerario);
 		

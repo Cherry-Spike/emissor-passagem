@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
-import br.unip.team.emissopassagem.view.MainFrame;
 import br.unip.team.emissopassagem.view.PanelBase;
 
 public class TelaIniciar extends PanelBase {

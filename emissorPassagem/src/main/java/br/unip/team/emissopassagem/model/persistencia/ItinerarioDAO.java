@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+import br.unip.team.emissopassagem.model.entidade.Horario;
 import br.unip.team.emissopassagem.model.entidade.Itinerario;
 
 public class ItinerarioDAO {
@@ -13,7 +14,8 @@ public class ItinerarioDAO {
 	private static final String INSERT_ITINERARIO = "insert into Itinerario(IdEstacaoEmbarque,IdHorarioEmbarque,IdEstacaoDesembarque,QtdPassagem,PrecoPassagem) values(?,?,?,?,?)";
 	private static final String VALIDA_ESTACAOHORARIO = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
 	private static final String UPDATE_ITENARARIO = "update Itinerario set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
-
+	private static final String HORARIO_ID = "select id, Hora from Horario where Hora = ?";
+	
 	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String[] idRetornado = { "id" };
@@ -37,7 +39,7 @@ public class ItinerarioDAO {
 			}
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
-		} catch (Exception e) {
+		}catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
 		return 0;
@@ -80,5 +82,25 @@ public class ItinerarioDAO {
 		}
 		return false;
 	}
+	
+	public int obterIdHorario(String string) {
+		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
+		try (PreparedStatement pstmt = conexao.prepareStatement(HORARIO_ID);) {
+			pstmt.setString(1, string);
+			try (ResultSet rs = pstmt.executeQuery();) {
+				Horario horario = new Horario("Hora");
+				while (rs.next()) {					
+					horario.setId(rs.getInt("Id"));
+				}
+				return horario.getId();
+			}
+		} catch (SQLException e) {
+			LOGGER.info("Erro na query SQL");
+		} catch (Exception e) {
+			LOGGER.severe(e.getMessage());
+		}
+		return 0;
+	}
+	
 }

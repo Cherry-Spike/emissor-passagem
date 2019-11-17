@@ -13,4 +13,8 @@ public class ItinerarioController {
     public int adicionarItinerario(Itinerario obj) {
     	 return servico.adicionar(obj);
     }
+    
+    public  int obterIdHorario(String string) {
+      	 return servico.obterHorarioPorId(string);
+      }
 }

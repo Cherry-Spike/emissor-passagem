@@ -55,4 +55,13 @@ public class ItinerarioServico {
 	public boolean alterarItinerario(Itinerario obj) {
 		return itinerarioDAO.alterarItinerario(obj);
 	}
+	
+	public int obterHorarioPorId(String string) {
+		int horario = itinerarioDAO.obterIdHorario(string);
+		if(horario <= 0) {
+			LOGGER.info("Horario não encontrado");
+			return 0;
+		}
+		return itinerarioDAO.obterIdHorario(string);
+	}
 }

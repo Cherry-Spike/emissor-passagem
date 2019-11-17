@@ -2,6 +2,7 @@ package br.unip.team.emissopassagem.model.entidade;
 
 public class Horario extends EntidadeBase {
 	private String hora;
+	private int IdHora;
 
 	public Horario(String hora) {
 		sethora(hora);
@@ -13,5 +14,15 @@ public class Horario extends EntidadeBase {
 
 	private void sethora(String hora) {
 		this.hora = hora;
+	}
+	
+	@SuppressWarnings("unused")
+	private void setIdHora(int id) {
+		IdHora = id;
+	}
+	
+	@SuppressWarnings("unused")
+	private int getIdHora() {
+		return IdHora;
 	}
 }
