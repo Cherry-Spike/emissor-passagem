@@ -16,4 +16,4 @@ public class Passagem extends EntidadeBase{
 	public void setNumero(long numero) {
 		this.numero = numero;
 	}
-	}
+}

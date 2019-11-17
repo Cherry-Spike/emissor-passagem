@@ -18,7 +18,7 @@ public class TelaPagamento extends Tela<Object> {
 		contentPane.setBackground(corDeFundo);
 
 		setLabel(contentPane, "Digite o numero do cartão:", 150, 40, 500, 30, 18);
-		setTextField(contentPane, 150, 90, 300, 50, 15);
+		setTextField(contentPane, 150, 90, 300, 50, 16);
 		setLabel(contentPane, "Digite o PIN:", 150, 185, 500, 30, 18);
 		setTextField(contentPane, 150, 230, 100, 50, 3);
 		JButton prox = setButtonProx(contentPane);
