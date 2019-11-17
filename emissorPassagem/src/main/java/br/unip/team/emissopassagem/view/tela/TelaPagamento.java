@@ -72,6 +72,8 @@ public class TelaPagamento extends Tela<Object> {
 	public void validaBtn() {
 		if(tfCartao.getText().length() >= cartaoLimite && tfPin.getText().length() >= pinLimite) {
 			prox.setEnabled(true);
+		}else {
+			prox.setEnabled(false);
 		}
 	}
 
