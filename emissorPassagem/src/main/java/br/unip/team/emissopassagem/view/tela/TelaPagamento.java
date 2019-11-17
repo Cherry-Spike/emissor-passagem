@@ -2,23 +2,19 @@ package br.unip.team.emissopassagem.view.tela;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import br.unip.team.emissopassagem.controller.LogController;
 import br.unip.team.emissopassagem.model.entidade.Cartao;
 
 public class TelaPagamento extends Tela<Object> {
 	private LogController logController;
-	private int idItinerario;
 	private Cartao cartao;
 	private JButton prox;
-	private JTextField tfCartao;
-	private JTextField tfPin;
-	private final int cartaoLimite = 16;
-	private final int pinLimite = 3;
+	private JTextField tfCartao, tfPin;
+	private int idItinerario;
+	private final int cartaoLimite = 16, pinLimite = 3;
 
 	public TelaPagamento(JPanel basePane, JPanel backPane, int idItinerario) {
 		setBasePane(basePane);
