@@ -25,12 +25,12 @@ public class ItinerarioDAO {
 			pstmt.setInt(2, obj.getIdEmbarqueHorario());
 			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
 			pstmt.setInt(4, obj.getQtdPassagem());
-			pstmt.setDouble(5, obj.getPrecoPassagem());
-			pstmt.getGeneratedKeys();
+			pstmt.setDouble(5, obj.getPrecoPassagem());			
 
 			if (pstmt.executeUpdate() == 0) {
-				throw new SQLException("Insert falhou, nenhuma linha afetada.");
+				throw new SQLException("Insert falhou, nenhuma linha afetada.");				
 			}
+			pstmt.getGeneratedKeys();
 
 			try (ResultSet rs = pstmt.getGeneratedKeys()) {
 				if (rs.next()) {

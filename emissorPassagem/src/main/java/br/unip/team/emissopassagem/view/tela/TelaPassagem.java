@@ -20,6 +20,7 @@ public class TelaPassagem extends Tela<String> {
 	private Estacao estacaoEmbarque;
 	private Estacao estacaoDesembarque;
 	private Itinerario itinerario = new Itinerario();
+	private int idItinerario;
 
 	public TelaPassagem(JPanel basePane, JPanel backPane, Estacao EstacaoEmbarque, Estacao inputEstacaoDesembarque) {
 		estacaoDesembarque = inputEstacaoDesembarque;
@@ -104,7 +105,7 @@ public class TelaPassagem extends Tela<String> {
 		itinerario.setIdEstacaoDesembarque(estacaoDesembarque.getId());
 		itinerario.setEmbarqueHorario(itinerarioController.obterIdHorario(cbHorario.getSelectedItem().toString()));
 		itinerario.setQtdPassagem((int) cbQtd.getSelectedItem());		
-		itinerarioController.adicionarItinerario(itinerario); //ItinerarioDAO.adicionar() caindo no catch, necessario ajustes!
+		idItinerario = itinerarioController.adicionarItinerario(itinerario);
 		
 	}
 	
