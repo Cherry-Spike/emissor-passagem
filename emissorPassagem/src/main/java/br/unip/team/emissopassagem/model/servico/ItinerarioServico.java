@@ -44,7 +44,7 @@ public class ItinerarioServico {
 		return itinerarioDAO.adicionar(obj);
 	}
 
-	private double calculaPreco(int totalEstacoesPercorridas, int qtdPassagem) {
+	public double calculaPreco(int totalEstacoesPercorridas, int qtdPassagem) {
 		return (totalEstacoesPercorridas * PRECO_PASSAGEM) * qtdPassagem;
 	}
 

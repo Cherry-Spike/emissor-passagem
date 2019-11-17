@@ -253,6 +253,72 @@ go
 BEGIN
 Declare @idEstacao int
 Select @idEstacao = id from Estacao WHERE nome = 'Philadelphia'
-INSERT INTO EstacaoHorario (IdEstacao, IdHorario)
-VALUES (@idEstacao, 1), (@idEstacao, 7), (@idEstacao, 6), (@idEstacao, 12)
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 1, 2), (@idEstacao, 7, 2), (@idEstacao, 13, 2), (@idEstacao, 19, 2),
+(@idEstacao, 25, 2), (@idEstacao, 31, 2), (@idEstacao, 37, 2), (@idEstacao, 43, 2),
+(@idEstacao, 49, 2), (@idEstacao, 55, 2), (@idEstacao, 61, 2), (@idEstacao, 67, 2),
+(@idEstacao, 73, 2), (@idEstacao, 79, 2)
+END
+
+BEGIN
+Select @idEstacao = id from Estacao WHERE nome = 'Pennsauken'
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 2, 2), (@idEstacao, 8, 2), (@idEstacao, 14, 2), (@idEstacao, 20, 2),
+(@idEstacao, 26, 2), (@idEstacao, 32, 2), (@idEstacao, 38, 2), (@idEstacao, 44, 2),
+(@idEstacao, 50, 2), (@idEstacao, 56, 2), (@idEstacao, 62, 2), (@idEstacao, 68, 2),
+(@idEstacao, 74, 2), (@idEstacao, 80, 2), (@idEstacao, 99, 1), (@idEstacao, 100, 1),
+(@idEstacao, 101, 1), (@idEstacao, 102, 1), (@idEstacao, 103, 1), (@idEstacao, 104, 1),
+(@idEstacao, 105, 1), (@idEstacao, 106, 1), (@idEstacao, 107, 1), (@idEstacao, 108, 1),
+(@idEstacao, 109, 1), (@idEstacao, 110, 1), (@idEstacao, 111, 1), (@idEstacao, 112, 1)
+END
+
+BEGIN
+Select @idEstacao = id from Estacao WHERE nome = 'Lindenwold'
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 3, 2), (@idEstacao, 9, 2), (@idEstacao, 15, 2), (@idEstacao, 21, 2),
+(@idEstacao, 27, 2), (@idEstacao, 33, 2), (@idEstacao, 39, 2), (@idEstacao, 45, 2),
+(@idEstacao, 51, 2), (@idEstacao, 57, 2), (@idEstacao, 63, 2), (@idEstacao, 69, 2),
+(@idEstacao, 75, 2), (@idEstacao, 81, 2), (@idEstacao, 4, 1), (@idEstacao, 10, 1),
+(@idEstacao, 16, 1), (@idEstacao, 22, 1), (@idEstacao, 28, 1), (@idEstacao, 34, 1),
+(@idEstacao, 40, 1), (@idEstacao, 46, 1), (@idEstacao, 52, 1), (@idEstacao, 58, 1),
+(@idEstacao, 64, 1), (@idEstacao, 70, 1), (@idEstacao, 76, 1), (@idEstacao, 82, 1)
+END
+
+BEGIN
+Select @idEstacao = id from Estacao WHERE nome = 'Atco'
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 4, 2), (@idEstacao, 10, 2), (@idEstacao, 16, 2), (@idEstacao, 22, 2),
+(@idEstacao, 28, 2), (@idEstacao, 34, 2), (@idEstacao, 40, 2), (@idEstacao, 46, 2),
+(@idEstacao, 52, 2), (@idEstacao, 58, 2), (@idEstacao, 64, 2), (@idEstacao, 70, 2),
+(@idEstacao, 76, 2), (@idEstacao, 82, 2), (@idEstacao, 3, 1), (@idEstacao, 9, 1),
+(@idEstacao, 15, 1), (@idEstacao, 21, 1), (@idEstacao, 27, 1), (@idEstacao, 33, 1),
+(@idEstacao, 39, 1), (@idEstacao, 45, 1), (@idEstacao, 51, 1), (@idEstacao, 57, 1),
+(@idEstacao, 63, 1), (@idEstacao, 69, 1), (@idEstacao, 75, 1), (@idEstacao, 81, 1)
+END
+
+BEGIN
+Select @idEstacao = id from Estacao WHERE nome = 'Egg Harbor City'
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 5, 2), (@idEstacao, 11, 2), (@idEstacao, 17, 2), (@idEstacao, 23, 2),
+(@idEstacao, 29, 2), (@idEstacao, 35, 2), (@idEstacao, 41, 2), (@idEstacao, 47, 2),
+(@idEstacao, 53, 2), (@idEstacao, 59, 2), (@idEstacao, 65, 2), (@idEstacao, 71, 2),
+(@idEstacao, 77, 2), (@idEstacao, 83, 2), (@idEstacao, 85, 1), (@idEstacao, 86, 1),
+(@idEstacao, 87, 1), (@idEstacao, 88, 1), (@idEstacao, 89, 1), (@idEstacao, 90, 1),
+(@idEstacao, 91, 1), (@idEstacao, 92, 1), (@idEstacao, 93, 1), (@idEstacao, 94, 1),
+(@idEstacao, 95, 1), (@idEstacao, 96, 1), (@idEstacao, 97, 1), (@idEstacao, 98, 1)
+END
+
+BEGIN
+Select @idEstacao = id from Estacao WHERE nome = 'Atlantic City'
+INSERT INTO EstacaoHorario (IdEstacao, IdHorario, IdSentido)
+VALUES
+(@idEstacao, 1, 1), (@idEstacao, 7, 1), (@idEstacao, 13, 1), (@idEstacao, 19, 1),
+(@idEstacao, 25, 1), (@idEstacao, 31, 1), (@idEstacao, 37, 1), (@idEstacao, 43, 1),
+(@idEstacao, 49, 1), (@idEstacao, 55, 1), (@idEstacao, 61, 1), (@idEstacao, 67, 1),
+(@idEstacao, 73, 1), (@idEstacao, 79, 1)
 END
