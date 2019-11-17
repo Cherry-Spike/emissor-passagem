@@ -15,12 +15,13 @@ public class TelaPagamento extends Tela<Object> {
 	private JTextField tfCartao, tfPin;
 	private int idItinerario;
 	private final int cartaoLimite = 16, pinLimite = 3;
+	private String txt;
 
 	public TelaPagamento(JPanel basePane, JPanel backPane, int idItinerario) {
+		this.idItinerario = idItinerario;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
-		this.idItinerario = idItinerario;
 	}
 
 	@Override
@@ -39,6 +40,7 @@ public class TelaPagamento extends Tela<Object> {
 		// Event Listener
 
 		prox.addActionListener(e -> {
+			setCartao(cartao);
 			logController.adicionarLog(idItinerario, cartao);
 			contentPane.setVisible(false);
 			new TelaEmissao(basePane, backPane);
@@ -76,5 +78,13 @@ public class TelaPagamento extends Tela<Object> {
 			prox.setEnabled(false);
 		}
 	}
-
+	
+	public void setCartao(Cartao cartao) {	
+		
+		txt = tfCartao.getText();
+		cartao.setNumero(txt);
+		int pin = Integer.parseInt(tfPin.getText());
+		cartao.setPin(pin);
+		
+	}
 }

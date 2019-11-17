@@ -1,12 +1,8 @@
 package br.unip.team.emissopassagem.model.entidade;
 
-public class Cartao {
+public class Cartao extends EntidadeBase{
 	private String numero;
 	private int pin;
-	
-	public Cartao() {
-		
-	}
 
 	public String getNumero() {
 		return numero;
