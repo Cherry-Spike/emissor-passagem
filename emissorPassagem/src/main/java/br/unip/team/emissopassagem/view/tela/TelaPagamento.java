@@ -82,7 +82,7 @@ public class TelaPagamento extends Tela<Object> {
 	public void setCartao(Cartao cartao) {	
 		
 		txt = tfCartao.getText();
-		cartao.setNumero(txt);
+		cartao.setNumero(txt);//Não Insere (NullPointerException..)
 		int pin = Integer.parseInt(tfPin.getText());
 		cartao.setPin(pin);
 		
