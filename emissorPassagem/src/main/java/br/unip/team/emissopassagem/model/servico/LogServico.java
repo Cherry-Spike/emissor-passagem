@@ -10,10 +10,10 @@ public class LogServico {
 	ItinerarioServico servicoItinerario;
 	LogDAO logDAO = new LogDAO();
 	private static final Logger LOGGER = Logger.getLogger(LogServico.class.getName());
-	
+
 	public boolean adicionarLog(int idItinerario, Cartao cartao) {
-		Itinerario itinerario = null;//servicoItinerario.obterItinerario(idItinerario);
-		if(itinerario == null) {
+		Itinerario itinerario = servicoItinerario.obterItinerarPorId(idItinerario);
+		if (itinerario == null) {
 			LOGGER.info("Nenhum itinerario encontrado");
 			return false;
 		}

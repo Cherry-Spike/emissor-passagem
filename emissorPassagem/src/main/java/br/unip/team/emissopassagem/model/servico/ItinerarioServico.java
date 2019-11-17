@@ -64,4 +64,11 @@ public class ItinerarioServico {
 		}
 		return itinerarioDAO.obterIdHorario(string);
 	}
+
+	public Itinerario obterItinerarPorId(int idItinerario) {
+		return itinerarioDAO.obterPorId(idItinerario);
+	}
+	
+	
+	
 }

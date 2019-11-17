@@ -1,6 +1,7 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Itinerario extends EntidadeBase{
+	private int idItinerario;
 	private int idEstacaoEmbarque;
 	private int idEmbarqueHorario;
 	private int idEstacaoDesembarque;
@@ -37,5 +38,11 @@ public class Itinerario extends EntidadeBase{
 
 	public double getPrecoPassagem() {
 		return preco;
+	}
+	public int getIdItinerario() {
+		return idItinerario;
+	}
+	public void setIdItinerario(int idItinerario) {
+		this.idItinerario = idItinerario;
 	}
 }

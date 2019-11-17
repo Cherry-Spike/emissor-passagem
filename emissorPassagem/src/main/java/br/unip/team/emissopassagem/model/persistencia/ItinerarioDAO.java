@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
 import br.unip.team.emissopassagem.model.entidade.Horario;
 import br.unip.team.emissopassagem.model.entidade.Itinerario;
 
@@ -15,6 +14,7 @@ public class ItinerarioDAO {
 	private static final String VALIDA_ESTACAOHORARIO = "select 1 as existe from EstacaoHorario where idEstacao = ? and idHorario = ?";
 	private static final String UPDATE_ITENARARIO = "update Itinerario set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 	private static final String HORARIO_ID = "select id, Hora from Horario where Hora = ?";
+	private static final String SELECT_ITINERARIO_POR_ID = "select IdEstacaoEmbarque, IdHorarioEmbarque, IdEstacaoDesembarque, QtdPassagem, PrecoPassagem from Itinerario where id = ?";
 	
 	public int adicionar(Itinerario obj) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
@@ -101,6 +101,30 @@ public class ItinerarioDAO {
 			LOGGER.severe(e.getMessage());
 		}
 		return 0;
+	}
+	
+	public Itinerario obterPorId(int id) {
+		Connection conexao = ConnectionFactory.conexaoSQLServer();
+		try (PreparedStatement pstmt = conexao.prepareStatement(SELECT_ITINERARIO_POR_ID);) {
+			pstmt.setInt(1, id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				Itinerario itinerario = new Itinerario();
+
+				while (rs.next()) {
+					itinerario.setIdEstacaoEmbarque(rs.getInt("IdEstacaoEmbarque"));
+					itinerario.setEmbarqueHorario(rs.getInt("IdHorarioEmbarque"));
+					itinerario.setIdEstacaoDesembarque(rs.getInt("IdEstacaoDesembarque"));
+					itinerario.setQtdPassagem(rs.getInt("QtdPassagem"));
+					itinerario.setPrecoPassagem(rs.getDouble("PrecoPassagem"));
+				}
+				return itinerario;
+			}
+		} catch (SQLException e) {
+			LOGGER.info("Erro na query obter estação por id.");
+		} catch (Exception e) {
+			LOGGER.severe(e.getMessage());
+		}
+		return null;
 	}
 	
 }

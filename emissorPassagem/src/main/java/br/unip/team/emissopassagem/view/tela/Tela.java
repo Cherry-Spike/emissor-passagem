@@ -83,8 +83,8 @@ public abstract class Tela<E> extends PanelBase{
 		txt.setFont(new Font(txt.getFont().getName(), txt.getFont().getStyle(), 25));
 		txt.setBorder(null);
 
-		txt.addKeyListener(new KeyListener() {
-
+		txt.addKeyListener(new KeyListener() {			
+			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (txt.getText().length() >= limit) {
@@ -110,6 +110,7 @@ public abstract class Tela<E> extends PanelBase{
 
 		return txt;
 	}
+	
 	public void trocaFrame(String nomeTela, JPanel basePane, JPanel backPane) {
 		JFrame frameAnterior = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, basePane);
 		frameAnterior.dispose();
