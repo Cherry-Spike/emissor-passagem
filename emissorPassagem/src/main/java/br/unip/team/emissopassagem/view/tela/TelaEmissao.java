@@ -8,11 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import br.unip.team.emissopassagem.controller.PassagemController;
+import br.unip.team.emissopassagem.model.entidade.Passagem;
 import br.unip.team.emissopassagem.view.PanelBase;
 
 public class TelaEmissao extends PanelBase  {
-
-	public TelaEmissao(JPanel basePane, JPanel backPane) {
+	private PassagemController passagemController;
+	private int idPassgem;
+	public TelaEmissao(JPanel basePane, JPanel backPane, int idPassgem) {
+		this.idPassgem = idPassgem;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
@@ -22,7 +26,7 @@ public class TelaEmissao extends PanelBase  {
 		
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
-		
+		Passagem passagem = passagemController.obterPassagemPorId(idPassgem);
 		ImageIcon imgLogo = new ImageIcon(getClass().getResource("Img\\logo-sntf.jpg"));		
 		JLabel logoSNTF = new JLabel(imgLogo);
 		logoSNTF.setBounds(0, 80, 263, 180);
