@@ -7,7 +7,7 @@ import br.unip.team.emissopassagem.model.entidade.Itinerario;
 import br.unip.team.emissopassagem.model.persistencia.LogDAO;
 
 public class LogServico {
-	ItinerarioServico servicoItinerario;
+	ItinerarioServico servicoItinerario = new ItinerarioServico();
 	LogDAO logDAO = new LogDAO();
 	private static final Logger LOGGER = Logger.getLogger(LogServico.class.getName());
 

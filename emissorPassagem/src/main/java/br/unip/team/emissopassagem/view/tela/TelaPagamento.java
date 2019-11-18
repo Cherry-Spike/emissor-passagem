@@ -9,13 +9,12 @@ import br.unip.team.emissopassagem.controller.LogController;
 import br.unip.team.emissopassagem.model.entidade.Cartao;
 
 public class TelaPagamento extends Tela<Object> {
-	private LogController logController;
-	private Cartao cartao;
+	private LogController logController = new LogController();
+	private Cartao cartao = new Cartao();
 	private JButton prox;
 	private JTextField tfCartao, tfPin;
 	private int idItinerario;
 	private final int cartaoLimite = 16, pinLimite = 3;
-	private String txt;
 
 	public TelaPagamento(JPanel basePane, JPanel backPane, int idItinerario) {
 		this.idItinerario = idItinerario;
@@ -40,7 +39,7 @@ public class TelaPagamento extends Tela<Object> {
 		// Event Listener
 
 		prox.addActionListener(e -> {
-			setCartao(cartao);
+			setCartao();
 			logController.adicionarLog(idItinerario, cartao);
 			contentPane.setVisible(false);
 			new TelaEmissao(basePane, backPane);
@@ -79,10 +78,9 @@ public class TelaPagamento extends Tela<Object> {
 		}
 	}
 	
-	public void setCartao(Cartao cartao) {	
+	public void setCartao() {	
 		
-		txt = tfCartao.getText();
-		cartao.setNumero(txt);//Não Insere (NullPointerException..)
+		cartao.setNumero(tfCartao.getText());
 		int pin = Integer.parseInt(tfPin.getText());
 		cartao.setPin(pin);
 		

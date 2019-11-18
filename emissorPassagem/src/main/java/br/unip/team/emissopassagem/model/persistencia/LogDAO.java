@@ -10,7 +10,7 @@ import br.unip.team.emissopassagem.model.entidade.Itinerario;
 
 public class LogDAO {
 	private static final Logger LOGGER = Logger.getLogger(LogDAO.class.getName());
-	private static final String INSERT_LOG = "inser into Log(horacompra,nmcartao,pin,idestacaoembarque,idestacaodesembarque,idhorarioembarque)values(Sysdate(),?,?,?,?,?)";
+	private static final String INSERT_LOG = "insert into Log(horacompra,nmcartao,pin,idestacaoembarque,idestacaodesembarque,idhorarioembarque)values(getdate(),?,?,?,?,?)";
 
 	public boolean adicionar(Itinerario itinerario, Cartao cartao) {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
