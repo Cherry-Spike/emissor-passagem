@@ -22,9 +22,9 @@ public class TelaPassagem extends Tela<String> {
 	private Itinerario itinerario = new Itinerario();
 	private int idItinerario;
 
-	public TelaPassagem(JPanel basePane, JPanel backPane, Estacao EstacaoEmbarque, Estacao inputEstacaoDesembarque) {
+	public TelaPassagem(JPanel basePane, JPanel backPane, Estacao estacaoEmbarque, Estacao inputEstacaoDesembarque) {
 		estacaoDesembarque = inputEstacaoDesembarque;
-		estacaoEmbarque = EstacaoEmbarque;
+		this.estacaoEmbarque = estacaoEmbarque;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
@@ -101,9 +101,9 @@ public class TelaPassagem extends Tela<String> {
 	
 	public void setItinerario(Itinerario itinerario) {
 		
-		itinerario.setIdEstacaoEmbarque(estacaoEmbarque.getId());
-		itinerario.setIdEstacaoDesembarque(estacaoDesembarque.getId());
-		itinerario.setEmbarqueHorario(itinerarioController.obterIdHorario(cbHorario.getSelectedItem().toString()));
+		itinerario.getEstacaoEmbarque().setId(estacaoEmbarque.getId());
+		itinerario.getEstacaoDesembarque().setId(estacaoDesembarque.getId());
+		itinerario.getEmbarqueHorario().setId(itinerarioController.obterIdHorario(cbHorario.getSelectedItem().toString()));
 		itinerario.setQtdPassagem((int) cbQtd.getSelectedItem());		
 		idItinerario = itinerarioController.adicionarItinerario(itinerario);
 		

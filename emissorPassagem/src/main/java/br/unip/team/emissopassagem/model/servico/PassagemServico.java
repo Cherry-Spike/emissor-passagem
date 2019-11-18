@@ -1,6 +1,6 @@
 package br.unip.team.emissopassagem.model.servico;
 
-import br.unip.team.emissopassagem.model.entidade.Passagem;
+import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 import br.unip.team.emissopassagem.model.persistencia.PassagemDAO;
 
 public class PassagemServico {
@@ -10,7 +10,7 @@ public class PassagemServico {
 		long numeroSequecial = (long) (Math.random() * 999999999999l);
 		return passagemDAO.adicionar(idItinerario, numeroSequecial);
 	}
-	public Passagem obterPorId(int id) {
+	public PassagemValueObject obterPorId(int id) {
 		return passagemDAO.obterPorId(id);
 	}
 }

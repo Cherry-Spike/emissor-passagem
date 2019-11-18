@@ -18,9 +18,9 @@ public class LogDAO {
 		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_LOG);) {
 			pstmt.setString(1, cartao.getNumero());
 			pstmt.setInt(2, cartao.getPin());
-			pstmt.setInt(3, itinerario.getIdEstacaoEmbarque());
-			pstmt.setInt(4, itinerario.getIdEstacaoDesembarque());
-			pstmt.setInt(5, itinerario.getIdEmbarqueHorario());
+			pstmt.setInt(3, itinerario.getEstacaoEmbarque().getId());
+			pstmt.setInt(4, itinerario.getEstacaoDesembarque().getId());
+			pstmt.setInt(5, itinerario.getEmbarqueHorario().getId());
 			if (pstmt.executeUpdate() == 0) {
 				throw new SQLException("Insert falhou, nenhuma linha afetada.");
 			}

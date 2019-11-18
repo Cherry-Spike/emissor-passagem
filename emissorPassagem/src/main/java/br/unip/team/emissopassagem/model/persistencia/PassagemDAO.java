@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import br.unip.team.emissopassagem.model.entidade.Passagem;
+import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 
 public class PassagemDAO {
 	private static final Logger LOGGER = Logger.getLogger(PassagemDAO.class.getName());
@@ -45,18 +46,18 @@ public class PassagemDAO {
 		return 0;
 	}
 
-	public Passagem obterPorId(int id) {
+	public PassagemValueObject obterPorId(int id) {
 
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		try (PreparedStatement pstmt = conexao.prepareStatement(PASSAGEM_POR_ID);) {
-			Passagem passagem = new Passagem();
+			PassagemValueObject passagem = new PassagemValueObject();
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				while (rs.next()) {
-					rs.getLong("numero");
-					rs.getString("estEmbarque");
-					rs.getString("estDesembarque");
-					rs.getTime("Hora").toString();
+					passagem.setNumero(rs.getLong("numero"));
+					passagem.setEstacaoEmbarque(rs.getString("estEmbarque"));
+					passagem.setEstacaoDesembarque(rs.getString("estDesembarque"));
+					passagem.setHorarioEmbarque(rs.getTime("Hora").toString());
 				}
 				return passagem;
 			}

@@ -3,6 +3,9 @@ package br.unip.team.emissopassagem.model.entidade;
 public class Horario extends EntidadeBase {
 	private String hora;
 
+	public Horario() {
+		
+	}
 	public Horario(String hora) {
 		sethora(hora);
 	}

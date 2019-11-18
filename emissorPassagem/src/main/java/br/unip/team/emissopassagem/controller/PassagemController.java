@@ -1,6 +1,6 @@
 package br.unip.team.emissopassagem.controller;
 
-import br.unip.team.emissopassagem.model.entidade.Passagem;
+import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 import br.unip.team.emissopassagem.model.servico.PassagemServico;
 
 public class PassagemController {
@@ -8,7 +8,7 @@ public class PassagemController {
 	public int adicionarPassagem(int idItinerario) {
 		return servico.adicionar(idItinerario);
 	}
-	public Passagem obterPassagemPorId(int idPassgem) {
+	public PassagemValueObject obterPassagemPorId(int idPassgem) {
 		return servico.obterPorId(idPassgem);
 	}
 
