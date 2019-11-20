@@ -2,11 +2,17 @@ package br.unip.team.emissopassagem.view.tela;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import br.unip.team.emissopassagem.controller.LogController;
 import br.unip.team.emissopassagem.model.entidade.Cartao;
+import br.unip.team.emissopassagem.model.entidade.VirtualKeyboard;
 
 public class TelaPagamento extends Tela<Object> {
 	private LogController logController = new LogController();
@@ -49,6 +55,15 @@ public class TelaPagamento extends Tela<Object> {
 			contentPane.setVisible(false);
 			backPane.setVisible(true);
 		});
+		
+		//Arrumar Key Board
+		/*tfCartao.addMouseListener(new MouseAdapter() {		
+			public void mouseClicked(MouseEvent e) {
+				JFrame frame = (JFrame) SwingUtilities.getRootPane(contentPane).getParent();
+				VirtualKeyboard vk = new VirtualKeyboard();
+				vk.show(frame, contentPane);
+			}
+		});*/			
 		
 		tfCartao.addKeyListener(new KeyListener() {			
 						
