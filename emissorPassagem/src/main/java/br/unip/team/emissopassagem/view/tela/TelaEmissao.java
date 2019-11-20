@@ -28,7 +28,7 @@ public class TelaEmissao extends PanelBase  {
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
 		PassagemValueObject passagem = passagemController.obterPassagemPorId(idPassgem);
-		ImageIcon imgLogo = new ImageIcon(getClass().getResource("Img\\logo-sntf.jpg"));		
+		ImageIcon imgLogo = new ImageIcon(getClass().getResource("..\\assets\\logo-sntf.jpg"));		
 		JLabel logoSNTF = new JLabel(imgLogo);
 		logoSNTF.setBounds(0, 80, 263, 180);
 		contentPane.add(logoSNTF);

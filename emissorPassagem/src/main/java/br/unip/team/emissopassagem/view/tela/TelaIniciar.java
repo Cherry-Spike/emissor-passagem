@@ -1,12 +1,20 @@
 package br.unip.team.emissopassagem.view.tela;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import com.mindfusion.keyboard.VirtualKeyboard;
 
 import br.unip.team.emissopassagem.view.PanelBase;
 
@@ -47,11 +55,11 @@ public class TelaIniciar extends PanelBase {
 				contentPane.setVisible(false);
 				new TelaEstacaoEb(basePane, contentPane);
 			});
-
+		
 			return contentPane;
 			
 		} catch (Exception e) {
-			LOGGER.info("Erro ao montar painel)");
+			LOGGER.info("Erro ao montar painel");
 			e.getMessage();
 		}
 		return null;
