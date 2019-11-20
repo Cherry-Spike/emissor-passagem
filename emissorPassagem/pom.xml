@@ -31,6 +31,11 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>br.unip.team.emissopassagem.view.Apresentacao</mainClass>
+						</manifest>
+					</archive>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>

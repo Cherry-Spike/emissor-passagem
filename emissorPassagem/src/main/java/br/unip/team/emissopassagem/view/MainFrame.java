@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 7662232455345233978L;
-	private static final Logger LOGGER = Logger.getLogger(Apresentacao.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getName());
 
 	private JPanel basePane;
 
