@@ -24,7 +24,6 @@ buildNumber.properties
 *.class
 .mtj.tmp/
 *.log
-*.jar
 *.war
 *.nar
 *.ear
@@ -33,3 +32,4 @@ buildNumber.properties
 *.rar
 hs_err_pid*
 .classpath
+*sonarlint

@@ -21,6 +21,13 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>7.0.0.jre8</version>
 		</dependency>
+		<dependency>
+			<groupId>com.mindfusion.keyboard</groupId>
+			<artifactId>VirtualKeyboard</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/JKeyboard.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>emissorPassagem</finalName>
