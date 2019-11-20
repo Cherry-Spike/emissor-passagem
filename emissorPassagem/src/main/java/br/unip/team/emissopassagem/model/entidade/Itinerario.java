@@ -1,48 +1,55 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Itinerario extends EntidadeBase{
-	private int idItinerario;
-	private int idEstacaoEmbarque;
-	private int idEmbarqueHorario;
-	private int idEstacaoDesembarque;
+	private Estacao estacaoEmbarque;
+	private Horario embarqueHorario;
+	private Estacao estacaoDesembarque;
 	private int qtdPassagem;
 	private double preco;
 	
-	public int getIdEstacaoEmbarque() {
-		return idEstacaoEmbarque;
+	public Itinerario() {
+		estacaoEmbarque = new Estacao();
+		embarqueHorario = new Horario();
+		estacaoDesembarque = new Estacao();
 	}
-	public void setIdEstacaoEmbarque(int idEstacaoEmbarque) {
-		this.idEstacaoEmbarque = idEstacaoEmbarque;
+
+	public Estacao getEstacaoEmbarque() {
+		return estacaoEmbarque;
 	}
-	public int getIdEmbarqueHorario() {
-		return idEmbarqueHorario;
+
+	public void setEstacaoEmbarque(Estacao estacaoEmbarque) {
+		this.estacaoEmbarque = estacaoEmbarque;
 	}
-	public void setEmbarqueHorario(int idEmbarqueHorario) {
-		this.idEmbarqueHorario = idEmbarqueHorario;
+
+	public Horario getEmbarqueHorario() {
+		return embarqueHorario;
 	}
-	public int getIdEstacaoDesembarque() {
-		return idEstacaoDesembarque;
+
+	public void setEmbarqueHorario(Horario embarqueHorario) {
+		this.embarqueHorario = embarqueHorario;
 	}
-	public void setIdEstacaoDesembarque(int idEstacaoDesembarque) {
-		this.idEstacaoDesembarque = idEstacaoDesembarque;
+
+	public Estacao getEstacaoDesembarque() {
+		return estacaoDesembarque;
 	}
+
+	public void setEstacaoDesembarque(Estacao estacaoDesembarque) {
+		this.estacaoDesembarque = estacaoDesembarque;
+	}
+
 	public int getQtdPassagem() {
 		return qtdPassagem;
 	}
+
 	public void setQtdPassagem(int qtdPassagem) {
 		this.qtdPassagem = qtdPassagem;
 	}
-	public void setPrecoPassagem(double preco) {
-		this.preco = preco;
-	}
 
-	public double getPrecoPassagem() {
+	public double getPreco() {
 		return preco;
 	}
-	public int getIdItinerario() {
-		return idItinerario;
-	}
-	public void setIdItinerario(int idItinerario) {
-		this.idItinerario = idItinerario;
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 }

@@ -21,11 +21,11 @@ public class ItinerarioDAO {
 		String[] idRetornado = { "id" };
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
-			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
-			pstmt.setInt(2, obj.getIdEmbarqueHorario());
-			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
+			pstmt.setInt(1, obj.getEstacaoEmbarque().getId());
+			pstmt.setInt(2, obj.getEmbarqueHorario().getId());
+			pstmt.setInt(3, obj.getEstacaoDesembarque().getId());
 			pstmt.setInt(4, obj.getQtdPassagem());
-			pstmt.setDouble(5, obj.getPrecoPassagem());			
+			pstmt.setDouble(5, obj.getPreco());			
 
 			if (pstmt.executeUpdate() == 0) {
 				throw new SQLException("Insert falhou, nenhuma linha afetada.");				
@@ -69,11 +69,11 @@ public class ItinerarioDAO {
 		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
 		try (PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ITENARARIO);) {
-			pstmt.setInt(1, obj.getIdEstacaoEmbarque());
-			pstmt.setInt(2, obj.getIdEmbarqueHorario());
-			pstmt.setInt(3, obj.getIdEstacaoDesembarque());
+			pstmt.setInt(1, obj.getEstacaoEmbarque().getId());
+			pstmt.setInt(2, obj.getEmbarqueHorario().getId());
+			pstmt.setInt(3, obj.getEstacaoDesembarque().getId());
 			pstmt.setInt(4, obj.getQtdPassagem());
-			pstmt.setInt(5, obj.getQtdPassagem());
+			pstmt.setDouble(5, obj.getPreco());
 			return pstmt.execute();
 		} catch (SQLException e) {
 			LOGGER.info("Erro na query SQL");
@@ -111,11 +111,11 @@ public class ItinerarioDAO {
 				Itinerario itinerario = new Itinerario();
 
 				while (rs.next()) {
-					itinerario.setIdEstacaoEmbarque(rs.getInt("IdEstacaoEmbarque"));
-					itinerario.setEmbarqueHorario(rs.getInt("IdHorarioEmbarque"));
-					itinerario.setIdEstacaoDesembarque(rs.getInt("IdEstacaoDesembarque"));
+					itinerario.getEstacaoEmbarque().setId(rs.getInt("IdEstacaoEmbarque"));
+					itinerario.getEmbarqueHorario().setId(rs.getInt("IdHorarioEmbarque"));
+					itinerario.getEstacaoDesembarque().setId(rs.getInt("IdEstacaoDesembarque"));
 					itinerario.setQtdPassagem(rs.getInt("QtdPassagem"));
-					itinerario.setPrecoPassagem(rs.getDouble("PrecoPassagem"));
+					itinerario.setPreco(rs.getDouble("PrecoPassagem"));
 				}
 				return itinerario;
 			}

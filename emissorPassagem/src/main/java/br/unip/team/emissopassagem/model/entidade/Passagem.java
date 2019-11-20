@@ -1,14 +1,14 @@
 package br.unip.team.emissopassagem.model.entidade;
 
 public class Passagem extends EntidadeBase{
-	private int idItinerario;
+	private Itinerario itinerario;
 	private long numero;
 	
-	public int getIdItinerario() {
-		return idItinerario;
+	public Itinerario getItinerario() {
+		return itinerario;
 	}
-	public void setIdItinerario(int idItinerario) {
-		this.idItinerario = idItinerario;
+	public void setItinerario(Itinerario itinerario) {
+		this.itinerario = itinerario;
 	}
 	public long getNumero() {
 		return numero;

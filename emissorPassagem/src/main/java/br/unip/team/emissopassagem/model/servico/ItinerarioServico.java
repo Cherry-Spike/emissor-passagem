@@ -15,15 +15,15 @@ public class ItinerarioServico {
 	private static final double PRECO_PASSAGEM = 1.50;
 
 	public int adicionar(Itinerario obj) {
-		Estacao estacaoEmbarque = estacaoDAO.obterPorId(obj.getIdEstacaoEmbarque());
-		Estacao estacaoDesembarque = estacaoDAO.obterPorId(obj.getIdEstacaoDesembarque());
+		Estacao estacaoEmbarque = estacaoDAO.obterPorId(obj.getEstacaoEmbarque().getId());
+		Estacao estacaoDesembarque = estacaoDAO.obterPorId(obj.getEstacaoDesembarque().getId());
 		
 		if (estacaoEmbarque == null || estacaoDesembarque == null) {
 			LOGGER.info("Estação de embarque não encontrada.");
 			return 0;
 		}
 		
-		if (!validaRelacionamento(obj.getIdEstacaoEmbarque(), obj.getIdEmbarqueHorario())) {
+		if (!validaRelacionamento(obj.getEstacaoEmbarque().getId(), obj.getEmbarqueHorario().getId())) {
 			LOGGER.info("Não foi encontrado horario para a estcação informada.");
 			return 0;
 		}
@@ -39,7 +39,7 @@ public class ItinerarioServico {
 		int totalEstacoesPercorridas = EstacaoPosicao.calcularTotalEstacaoPercorrida(posicaoEstacaoEmb, posicaoEstacaoDesem); 
 		double preco = calculaPreco(totalEstacoesPercorridas, obj.getQtdPassagem());
 		
-		obj.setPrecoPassagem(preco);
+		obj.setPreco(preco);
 		
 		return itinerarioDAO.adicionar(obj);
 	}
