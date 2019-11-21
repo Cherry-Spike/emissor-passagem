@@ -16,8 +16,8 @@ import br.unip.team.emissopassagem.view.PanelBase;
 public class TelaEmissao extends PanelBase  {
 	private PassagemController passagemController = new PassagemController();
 	private int idPassgem;
-	public TelaEmissao(JPanel basePane, JPanel backPane, int idPassgem) {
-		this.idPassgem = idPassgem;
+	public TelaEmissao(JPanel basePane, JPanel backPane, int idPassagem) {
+		this.idPassgem = idPassagem;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);

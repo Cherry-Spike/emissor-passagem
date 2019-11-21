@@ -1,19 +1,18 @@
 package br.unip.team.emissopassagem.view.tela;
 
-import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
+import com.mindfusion.keyboard.KeyboardLayout;
+import com.mindfusion.keyboard.KeyboardMode;
+import com.mindfusion.keyboard.Theme;
 import com.mindfusion.keyboard.VirtualKeyboard;
 
 import br.unip.team.emissopassagem.controller.LogController;
@@ -21,6 +20,7 @@ import br.unip.team.emissopassagem.controller.PassagemController;
 import br.unip.team.emissopassagem.model.entidade.Cartao;
 
 public class TelaPagamento extends Tela<Object> {
+	JFrame KbFrame = new JFrame();
 	private LogController logController = new LogController();
 	private PassagemController passagemController = new PassagemController();
 	private Cartao cartao = new Cartao();;
@@ -29,6 +29,7 @@ public class TelaPagamento extends Tela<Object> {
 	private int idItinerario;
 	private static final int CARTAO_LIMITE = 16;
 	private static final int PIN_LIMITE = 3;
+	private static final String TEMPLATE = "src\\main\\java\\br\\unip\\team\\emissopassagem\\view\\assets\\NumPad(68551702).xml";
 
 	public TelaPagamento(JPanel basePane, JPanel backPane, int idItinerario) {
 		this.idItinerario = idItinerario;
@@ -39,9 +40,20 @@ public class TelaPagamento extends Tela<Object> {
 
 	@Override
 	public JPanel window() {
-
+				
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
+		
+    	VirtualKeyboard vkb = new VirtualKeyboard();
+    	vkb.setStandalone(true);
+		vkb.setFocusable(false);
+		vkb.setPreferredSize(new Dimension(240, 300));
+		vkb.setTemplateLayout(KeyboardLayout.create(TEMPLATE));
+		KbFrame.setBounds(450, 300, 240, 300);
+		KbFrame.setResizable(false);
+		vkb.setTheme(Theme.OfficeSilver);
+		KbFrame.getContentPane().add(vkb);
+		KbFrame.setVisible(false);
 
 		prox = setButtonProx(contentPane);
 		JButton cancel = setButtonCancel(contentPane);
@@ -50,7 +62,7 @@ public class TelaPagamento extends Tela<Object> {
 		setLabel(contentPane, "Digite o PIN:", 150, 185, 500, 30, 18);
 		tfPin = setTextField(contentPane, 150, 230, 100, 50, PIN_LIMITE);
 
-		// Event Listener
+		// Event Listeners
 
 		prox.addActionListener(e -> {
 			cartao.setNumero(tfCartao.getText());
@@ -70,16 +82,32 @@ public class TelaPagamento extends Tela<Object> {
 
 		tfCartao.addKeyListener(new KeyListener() {
 
-			public void keyTyped(KeyEvent e) {validaBtn();}
-			public void keyPressed(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) {
+				validaBtn();
+			}
+			
+			public void keyPressed(KeyEvent e) {				
+		        if (e.getKeyCode()==KeyEvent.VK_ENTER){
+		        	KbFrame.setVisible(false);
+		        }					
+			}	
+			
 			public void keyReleased(KeyEvent e) {}
 
 		});
 
 		tfPin.addKeyListener(new KeyListener() {
 
-			public void keyTyped(KeyEvent e) {validaBtn();}
-			public void keyPressed(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) {
+				validaBtn();
+			}
+			
+			public void keyPressed(KeyEvent e) {				
+		        if (e.getKeyCode()==KeyEvent.VK_ENTER){
+		        	KbFrame.setVisible(false);
+		        }			        
+			}
+			
 			public void keyReleased(KeyEvent e) {}
 
 		});
@@ -87,14 +115,16 @@ public class TelaPagamento extends Tela<Object> {
 		tfCartao.addMouseListener(new MouseAdapter() {
             @Override
              public void mouseClicked(MouseEvent e) {
-        		JFrame mainFrame = new JFrame("MindFusion Virtual Keyboard sample: Embedded Keyboard");
-            	VirtualKeyboard vkb = new VirtualKeyboard();
-            	vkb.setStandalone(true);
-        		vkb.setFocusable(false);
-        		vkb.setPreferredSize(new Dimension(870, 300));
-        		mainFrame.getContentPane().add(vkb);
-        		mainFrame.setSize(870, 310);
-        		mainFrame.setVisible(true);
+            	vkb.setMode(KeyboardMode.Custom);
+        		KbFrame.setVisible(true);
+             }            
+        });
+		
+		tfPin.addMouseListener(new MouseAdapter() {
+            @Override
+             public void mouseClicked(MouseEvent e) {
+            	vkb.setMode(KeyboardMode.Custom);
+        		KbFrame.setVisible(true);
              }            
         });
 
@@ -107,6 +137,5 @@ public class TelaPagamento extends Tela<Object> {
 			prox.setEnabled(true);
 		else
 			prox.setEnabled(false);
-
 	}
 }
