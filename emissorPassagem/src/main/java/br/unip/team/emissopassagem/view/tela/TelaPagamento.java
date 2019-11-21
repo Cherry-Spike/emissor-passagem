@@ -14,7 +14,6 @@ import com.mindfusion.keyboard.KeyboardLayout;
 import com.mindfusion.keyboard.KeyboardMode;
 import com.mindfusion.keyboard.Theme;
 import com.mindfusion.keyboard.VirtualKeyboard;
-
 import br.unip.team.emissopassagem.controller.LogController;
 import br.unip.team.emissopassagem.controller.PassagemController;
 import br.unip.team.emissopassagem.model.entidade.Cartao;
@@ -72,6 +71,7 @@ public class TelaPagamento extends Tela<Object> {
 			logController.adicionarLog(idItinerario, cartao);
 			int idPassgem = passagemController.adicionarPassagem(idItinerario);
 			contentPane.setVisible(false);
+			KbFrame.setVisible(false);
 			new TelaEmissao(basePane, backPane, idPassgem);
 		});
 
@@ -103,7 +103,7 @@ public class TelaPagamento extends Tela<Object> {
 			}
 			
 			public void keyPressed(KeyEvent e) {				
-		        if (e.getKeyCode()==KeyEvent.VK_ENTER){
+		        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE){
 		        	KbFrame.setVisible(false);
 		        }			        
 			}
