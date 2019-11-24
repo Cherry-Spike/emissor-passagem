@@ -4,7 +4,10 @@ import br.unip.team.emissopassagem.model.entidade.Trem;
 import br.unip.team.emissopassagem.model.persistencia.TremDAO;
 
 public class TremServico {
-	private TremDAO tremDAO = new TremDAO();
+	private TremDAO tremDAO;
+	public TremServico() {
+		tremDAO = new TremDAO();
+	}
 
 	public boolean reservarAssento(int id) {
 		return tremDAO.reservarAssento(id);

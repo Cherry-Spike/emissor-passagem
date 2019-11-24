@@ -17,13 +17,12 @@ public enum EstacaoPosicao {
 			if (estacaoPos.getNome().equals(nome))
 				return estacaoPos.ordinal();
 		}
-
 		LOGGER.info("Posição da estação não encontrada.");
 		return -1;
 	}
 	
 	public static int calcularSentido(int posicaoEstacaoEmb, int posicaoEstacaoDesem) {
-		if(posicaoEstacaoEmb - posicaoEstacaoDesem < 0) {
+		if (posicaoEstacaoEmb - posicaoEstacaoDesem < 0) {
 			return 2;
 		}
 		return 1;

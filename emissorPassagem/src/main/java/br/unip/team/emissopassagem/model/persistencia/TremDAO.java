@@ -14,14 +14,13 @@ public class TremDAO {
 	private static final String TREM_POR_IDESTACAOINICIAL = "select id, totalAssento, assentoDisponivel, idEstacaoInicial, idEstacaoFinal from Trem where IdEstacaoInicial = ?";
 
 	public boolean reservarAssento(int id) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-
-		try (PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ASSENTO);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ASSENTO);) {
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, id);
 			return pstmt.execute();
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL" + UPDATE_ASSENTO);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
@@ -29,9 +28,8 @@ public class TremDAO {
 	}
 
 	public Trem obterPorIdCidadeInicial(int id) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-
-		try (PreparedStatement pstmt = conexao.prepareStatement(TREM_POR_IDESTACAOINICIAL)) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(TREM_POR_IDESTACAOINICIAL)) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				Trem trem = new Trem();
@@ -43,7 +41,7 @@ public class TremDAO {
 				return trem;
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + TREM_POR_IDESTACAOINICIAL);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}

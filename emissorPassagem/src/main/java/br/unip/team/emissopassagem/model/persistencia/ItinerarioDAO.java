@@ -15,20 +15,20 @@ public class ItinerarioDAO {
 	private static final String UPDATE_ITENARARIO = "update Itinerario set IdEstacaoEmbarque= ?,IdHorarioEmbarque = ?,IdEstacaoDesembarque = ?,QtdPassagem = ? where id = ?";
 	private static final String HORARIO_ID = "select id, Hora from Horario where Hora = ?";
 	private static final String SELECT_ITINERARIO_POR_ID = "select IdEstacaoEmbarque, IdHorarioEmbarque, IdEstacaoDesembarque, QtdPassagem, PrecoPassagem from Itinerario where id = ?";
-	
+
 	public int adicionar(Itinerario obj) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String[] idRetornado = { "id" };
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(INSERT_ITINERARIO, idRetornado);) {
 			pstmt.setInt(1, obj.getEstacaoEmbarque().getId());
 			pstmt.setInt(2, obj.getEmbarqueHorario().getId());
 			pstmt.setInt(3, obj.getEstacaoDesembarque().getId());
 			pstmt.setInt(4, obj.getQtdPassagem());
-			pstmt.setDouble(5, obj.getPreco());			
+			pstmt.setDouble(5, obj.getPreco());
 
 			if (pstmt.executeUpdate() == 0) {
-				throw new SQLException("Insert falhou, nenhuma linha afetada.");				
+				throw new SQLException("Insert falhou, nenhuma linha afetada.");
 			}
 			pstmt.getGeneratedKeys();
 
@@ -38,37 +38,34 @@ public class ItinerarioDAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
-		}catch (Exception e) {
+			LOGGER.info("Erro na query SQL " + INSERT_ITINERARIO);
+		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
 		return 0;
 	}
 
 	public boolean validaRelacionamento(int idEstacao, int idHorario) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		boolean existe = false;
-
-		try (PreparedStatement pstmt = conexao.prepareStatement(VALIDA_ESTACAOHORARIO);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(VALIDA_ESTACAOHORARIO);) {
 			pstmt.setInt(1, idEstacao);
 			pstmt.setInt(2, idHorario);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				while (rs.next())
-					existe = true;
-				return existe;
+					return true;
 			}
+			return false;
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + VALIDA_ESTACAOHORARIO);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
-		return existe;
+		return false;
 	}
 
 	public boolean alterarItinerario(Itinerario obj) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-
-		try (PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ITENARARIO);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(UPDATE_ITENARARIO);) {
 			pstmt.setInt(1, obj.getEstacaoEmbarque().getId());
 			pstmt.setInt(2, obj.getEmbarqueHorario().getId());
 			pstmt.setInt(3, obj.getEstacaoDesembarque().getId());
@@ -76,21 +73,20 @@ public class ItinerarioDAO {
 			pstmt.setDouble(5, obj.getPreco());
 			return pstmt.execute();
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + UPDATE_ITENARARIO);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
 		return false;
 	}
-	
-	public int obterIdHorario(String string) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(HORARIO_ID);) {
+	public int obterIdHorario(String string) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(HORARIO_ID);) {
 			pstmt.setString(1, string);
 			try (ResultSet rs = pstmt.executeQuery();) {
 				Horario horario = new Horario("Hora");
-				while (rs.next()) {					
+				while (rs.next()) {
 					horario.setId(rs.getInt("Id"));
 				}
 				return horario.getId();
@@ -102,10 +98,10 @@ public class ItinerarioDAO {
 		}
 		return 0;
 	}
-	
+
 	public Itinerario obterPorId(int id) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		try (PreparedStatement pstmt = conexao.prepareStatement(SELECT_ITINERARIO_POR_ID);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(SELECT_ITINERARIO_POR_ID);) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				Itinerario itinerario = new Itinerario();
@@ -120,11 +116,11 @@ public class ItinerarioDAO {
 				return itinerario;
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query obter estação por id.");
+			LOGGER.info("Erro na query SQL"+ SELECT_ITINERARIO_POR_ID);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
 		return null;
 	}
-	
+
 }

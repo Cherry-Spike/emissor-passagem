@@ -9,17 +9,22 @@ import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 import br.unip.team.emissopassagem.model.persistencia.ItinerarioDAO;
 
 public class ItinerarioServico {
-	private ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
-	private EstacaoDAO estacaoDAO = new EstacaoDAO();
+	private ItinerarioDAO itinerarioDAO;
+	private EstacaoDAO estacaoDAO;
 	private static final Logger LOGGER = Logger.getLogger(ItinerarioServico.class.getName());
 	private static final double PRECO_PASSAGEM = 1.50;
-
+	
+	public ItinerarioServico() {
+		estacaoDAO = new EstacaoDAO();
+		itinerarioDAO = new ItinerarioDAO();
+	}
+	
 	public int adicionar(Itinerario obj) {
 		Estacao estacaoEmbarque = estacaoDAO.obterPorId(obj.getEstacaoEmbarque().getId());
 		Estacao estacaoDesembarque = estacaoDAO.obterPorId(obj.getEstacaoDesembarque().getId());
 		
 		if (estacaoEmbarque == null || estacaoDesembarque == null) {
-			LOGGER.info("Estação de embarque não encontrada.");
+			LOGGER.info("Estação não encontrada.");
 			return 0;
 		}
 		

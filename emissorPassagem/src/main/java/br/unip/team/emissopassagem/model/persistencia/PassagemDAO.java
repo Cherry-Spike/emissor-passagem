@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import br.unip.team.emissopassagem.model.entidade.Passagem;
 import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 
 public class PassagemDAO {
@@ -19,10 +18,10 @@ public class PassagemDAO {
 			+ "inner join horario as hr on it.IdHorarioEmbarque = hr.id where pg.id = ?;";
 
 	public int adicionar(int idItinerario, long numero) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		String[] idRetornado = { "id" };
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_PASSAGEM, idRetornado);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(INSERT_PASSAGEM, idRetornado);) {
 			pstmt.setInt(1, idItinerario);
 			pstmt.setLong(2, numero);
 
@@ -48,8 +47,8 @@ public class PassagemDAO {
 
 	public PassagemValueObject obterPorId(int id) {
 
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		try (PreparedStatement pstmt = conexao.prepareStatement(PASSAGEM_POR_ID);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(PASSAGEM_POR_ID);) {
 			PassagemValueObject passagem = new PassagemValueObject();
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -62,7 +61,7 @@ public class PassagemDAO {
 				return passagem;
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL" + PASSAGEM_POR_ID);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}

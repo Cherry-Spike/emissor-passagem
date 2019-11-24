@@ -7,18 +7,18 @@ import java.util.logging.*;
 
 public class ConnectionFactory {
 	private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
-	private final static String HOST = "DESKTOP-FERNAND";
+	private static final String HOST = "DESKTOP-E021K2T";
 
 	private ConnectionFactory() {
 	}
 
 	public static Connection conexaoSQLServer() {
-		
+
 		try {
 			String connectionUrl = "jdbc:sqlserver://" + HOST + ";databaseName=Estacao;integratedSecurity=true;";
 			return DriverManager.getConnection(connectionUrl);
 		} catch (SQLException e) {
-			LOGGER.log(Level.SEVERE,"Conexão banco de dados Sql Server");
+			LOGGER.log(Level.SEVERE, "Conexão banco de dados Sql Server");
 		}
 		return null;
 	}

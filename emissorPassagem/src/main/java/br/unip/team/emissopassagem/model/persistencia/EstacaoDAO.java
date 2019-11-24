@@ -22,9 +22,10 @@ public class EstacaoDAO {
 
 	public List<Estacao> obterTodas() {
 		List<Estacao> estacoes = new ArrayList<>();
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
 
-		try (Statement stmt = conexao.createStatement(); ResultSet rs = stmt.executeQuery(TODAS_ESTACOES);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				Statement stmt = conexao.createStatement();
+				ResultSet rs = stmt.executeQuery(TODAS_ESTACOES);) {
 
 			while (rs.next()) {
 				Estacao estacao = new Estacao();
@@ -34,7 +35,7 @@ public class EstacaoDAO {
 			}
 			return estacoes;
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + TODAS_ESTACOES);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
@@ -42,10 +43,10 @@ public class EstacaoDAO {
 	}
 
 	public List<Horario> obterEstacaoHorarios(int id, int sentido) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
 		List<Horario> horarios = new ArrayList<>();
 
-		try (PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_HORARIOS);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_HORARIOS);) {
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, sentido);
 			try (ResultSet rs = pstmt.executeQuery();) {
@@ -57,7 +58,7 @@ public class EstacaoDAO {
 				return horarios;
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + ESTACAO_HORARIOS);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
@@ -65,8 +66,8 @@ public class EstacaoDAO {
 	}
 
 	public Estacao obterPorId(int id) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-		try (PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_POR_ID);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(ESTACAO_POR_ID);) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				Estacao estacao = new Estacao();
@@ -78,7 +79,7 @@ public class EstacaoDAO {
 				return estacao;
 			}
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query obter estação por id.");
+			LOGGER.info("Erro na query SQL " + ESTACAO_POR_ID);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}

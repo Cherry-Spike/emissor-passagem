@@ -9,41 +9,38 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import br.unip.team.emissopassagem.controller.PassagemController;
-import br.unip.team.emissopassagem.model.entidade.Passagem;
 import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 import br.unip.team.emissopassagem.view.PanelBase;
 
-public class TelaEmissao extends PanelBase  {
+public class TelaEmissao extends PanelBase {
 	private PassagemController passagemController = new PassagemController();
-	private int idPassgem;
+	private int idPassagem;
+
 	public TelaEmissao(JPanel basePane, JPanel backPane, int idPassagem) {
-		this.idPassgem = idPassagem;
+		this.idPassagem = idPassagem;
 		setBasePane(basePane);
 		setBackPane(backPane);
 		setNewPane(window(), basePane);
 	}
 
 	public JPanel window() {
-		
+
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(corDeFundo);
-		PassagemValueObject passagem = passagemController.obterPassagemPorId(idPassgem);
-		ImageIcon imgLogo = new ImageIcon(getClass().getResource("..\\assets\\logo-sntf.jpg"));		
+		PassagemValueObject passagem = passagemController.obterPassagemPorId(idPassagem);
+		ImageIcon imgLogo = new ImageIcon(getClass().getResource("..\\assets\\logo-sntf.jpg"));
 		JLabel logoSNTF = new JLabel(imgLogo);
 		logoSNTF.setBounds(0, 80, 263, 180);
 		contentPane.add(logoSNTF);
-		
-		//Event Listener
-		
+
 		setButtonCancel(contentPane).addActionListener(e -> {
-				contentPane.setVisible(false);
-				backPane.setVisible(true);
+			contentPane.setVisible(false);
+			backPane.setVisible(true);
 		});
-		
+
 		return contentPane;
-		
 	}
-	
+
 	public JButton setButtonCancel(JPanel contentPane) {
 
 		JButton btnCancelar = new JButton("CANCELAR");
@@ -57,7 +54,6 @@ public class TelaEmissao extends PanelBase  {
 		contentPane.add(btnCancelar);
 
 		return btnCancelar;
-
 	}
 
 }

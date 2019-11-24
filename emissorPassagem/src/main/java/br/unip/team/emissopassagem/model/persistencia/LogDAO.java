@@ -13,9 +13,8 @@ public class LogDAO {
 	private static final String INSERT_LOG = "insert into Log(horacompra,nmcartao,pin,idestacaoembarque,idestacaodesembarque,idhorarioembarque)values(getdate(),?,?,?,?,?)";
 
 	public boolean adicionar(Itinerario itinerario, Cartao cartao) {
-		Connection conexao = ConnectionFactory.conexaoSQLServer();
-
-		try (PreparedStatement pstmt = conexao.prepareStatement(INSERT_LOG);) {
+		try (Connection conexao = ConnectionFactory.conexaoSQLServer();
+				PreparedStatement pstmt = conexao.prepareStatement(INSERT_LOG);) {
 			pstmt.setString(1, cartao.getNumero());
 			pstmt.setInt(2, cartao.getPin());
 			pstmt.setInt(3, itinerario.getEstacaoEmbarque().getId());
@@ -26,7 +25,7 @@ public class LogDAO {
 			}
 			return true;
 		} catch (SQLException e) {
-			LOGGER.info("Erro na query SQL");
+			LOGGER.info("Erro na query SQL " + INSERT_LOG);
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}

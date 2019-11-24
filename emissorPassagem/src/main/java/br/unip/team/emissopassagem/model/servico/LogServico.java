@@ -8,8 +8,12 @@ import br.unip.team.emissopassagem.model.persistencia.LogDAO;
 
 public class LogServico {
 	ItinerarioServico servicoItinerario = new ItinerarioServico();
-	LogDAO logDAO = new LogDAO();
+	LogDAO logDAO;
 	private static final Logger LOGGER = Logger.getLogger(LogServico.class.getName());
+	
+	public LogServico() {
+		logDAO = new LogDAO();
+	}
 
 	public boolean adicionarLog(int idItinerario, Cartao cartao) {
 		Itinerario itinerario = servicoItinerario.obterItinerarPorId(idItinerario);

@@ -10,9 +10,12 @@ import br.unip.team.emissopassagem.model.entidade.Horario;
 import br.unip.team.emissopassagem.model.persistencia.EstacaoDAO;
 
 public class EstacaoServico {
-	private final EstacaoDAO estacaoDAO = new EstacaoDAO();
+	private EstacaoDAO estacaoDAO;
 	private static final Logger LOGGER = Logger.getLogger(EstacaoServico.class.getName());
 	
+	public EstacaoServico() {
+		estacaoDAO = new EstacaoDAO();
+	}
 	public List<Estacao> obterTodas() {
 		return estacaoDAO.obterTodas();
 	}
@@ -22,6 +25,7 @@ public class EstacaoServico {
 		Estacao estacaoDesembarque = obterPorId(idEstacaoDesembarque);
 
 		if(estacaoEmbarque == null || estacaoDesembarque == null) {
+			LOGGER.info("Estação não encontrada");
 			return Collections.emptyList();
 		}
 		int embPos = EstacaoPosicao.obterPosicaoEstacao(estacaoEmbarque.getNome());
@@ -42,7 +46,7 @@ public class EstacaoServico {
 		Estacao estacao = estacaoDAO.obterPorId(id);
 		if(estacao == null) {
 			LOGGER.info("Estação não encontrada");
-			return estacao;
+			return null;
 		}
 		return estacao;
 	}
