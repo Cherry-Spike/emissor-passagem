@@ -1,4 +1,4 @@
-# Emissor Passagem  :bullettrain_side:
+# Emissor de Passagem  :bullettrain_side:
 
 Projeto proposto na Faculdade - Emissor de Passagens (Swing e JDBC)  :coffee:  
 
