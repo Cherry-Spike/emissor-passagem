@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
 import br.unip.team.emissopassagem.model.entidade.PassagemValueObject;
 
 public class PassagemDAO {

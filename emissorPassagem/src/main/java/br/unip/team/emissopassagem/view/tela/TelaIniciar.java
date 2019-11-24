@@ -46,6 +46,7 @@ public class TelaIniciar extends PanelBase {
 			btnIniciar.addActionListener(e -> {
 				contentPane.setVisible(false);
 				new TelaEstacaoEb(basePane, contentPane);
+				//new TelaEmissao(basePane, contentPane);
 			});
 		
 			return contentPane;

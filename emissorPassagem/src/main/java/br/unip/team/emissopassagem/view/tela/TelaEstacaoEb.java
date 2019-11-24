@@ -33,7 +33,7 @@ public class TelaEstacaoEb extends Tela<Estacao> {
 
 		prox.addActionListener(e -> {
 			contentPane.setVisible(false);
-			new TelaEstacaoDb(basePane, contentPane, estacaoSelecionada);
+			new TelaEstacaoDb(basePane, backPane, estacaoSelecionada);
 			});
 
 		cancel.addActionListener(e -> {
