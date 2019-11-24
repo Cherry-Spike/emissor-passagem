@@ -113,21 +113,21 @@ public class TelaPagamento extends Tela<Object> {
 
 		});
 		
-		tfCartao.addMouseListener(new MouseAdapter() {
-            @Override
-             public void mouseClicked(MouseEvent e) {
-            	vkb.setMode(KeyboardMode.Custom);
-            	kbFrame.setVisible(true);
-             }            
-        });
-		
-		tfPin.addMouseListener(new MouseAdapter() {
-            @Override
-             public void mouseClicked(MouseEvent e) {
-            	vkb.setMode(KeyboardMode.Custom);
-            	kbFrame.setVisible(true);
-             }            
-        });
+//		tfCartao.addMouseListener(new MouseAdapter() {
+//            @Override
+//             public void mouseClicked(MouseEvent e) {
+//            	vkb.setMode(KeyboardMode.Custom);
+//            	kbFrame.setVisible(true);
+//             }            
+//        });
+//		
+//		tfPin.addMouseListener(new MouseAdapter() {
+//            @Override
+//             public void mouseClicked(MouseEvent e) {
+//            	vkb.setMode(KeyboardMode.Custom);
+//            	kbFrame.setVisible(true);
+//             }            
+//        });
 
 		return contentPane;
 
